@@ -1,31 +1,44 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../ducks/users";
+import axios from 'axios';
 
 
 class Team extends Component {
+  constructor(){
+    super()
+    this.state = {
+      team: []
+    }
+  }
 
   componentDidMount() {
     this.props.getUserInfo();
+    console.log(this.props.match.params.team_name);
+    
+    axios.get(`/api/team/${this.props.match.params.team_name}`).then(res => {
+      console.log(res)
+      this.setState({
+        team: res.data
+      })
+    })
+
   }
 
 
   render() {
-    const { user } = this.props;
-    const userDataJSX = this.props.user.name ? (
-      <div>
-        <h1>{user.team_name}</h1>
-        <h2>Members:</h2>
-        <p>{user.userid[0].name}</p>
-        <p>{user.userid[1].name}</p>
-        <h2>Sports:</h2>
-        <p>{user.sport}</p>
+    console.log(this.state);
+    let displayTeam = this.state.team.map(team => {
+      return(
+      <div key={team.id}>
+        {team.team_name}
       </div>
-    ) : (
-      <p>Please Log In!</p>
-    );
-
-    return <div className="text">{userDataJSX}</div>;
+      )
+    })
+    return <div className="text">
+    <p></p>
+    <h1>{displayTeam}</h1>
+    </div>;
   }
 }
 

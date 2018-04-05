@@ -75,13 +75,18 @@ passport.deserializeUser((id, done) => {
     .get("db")
     .find_session_user([id])
     .then(user => {
-      console.log(user);
+      // console.log(user);
       
       const loggedInUser = user[0]
      app.get('db').get_users([loggedInUser.userid[0],loggedInUser.userid[1]])
       .then(res => {
         loggedInUser.userid = res
-        done(null, loggedInUser);
+        app.get('db').get_teams([loggedInUser.id])
+        .then(response => {
+          console.log(response)
+          loggedInUser.team_name = response
+          done(null, loggedInUser);
+        })
       })
     });
 });
@@ -103,11 +108,14 @@ app.get("/login/me", function(req, res) {
   }
 });
 
+app.get('/api/team/:team_name', c.getTeam)
 
 app.get("/login/logout", (req, res) => {
   req.logOut();
   res.redirect('http://localhost:3000/')
+
 });
+
 
 app.listen(SERVER_PORT, () =>
   console.log(chalk.cyan(`POWER LEVEL OVER ${SERVER_PORT}!!!!!!!`))
