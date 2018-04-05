@@ -8,11 +8,11 @@
 
 .box1 {
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-evenly;
   border: 2px solid black;
   width: 20vw;
   height: 15vh;
-  text-align: left;
-  padding-left: 25px;
 }
 
 .box3 {
