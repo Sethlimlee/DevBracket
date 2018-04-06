@@ -83,7 +83,6 @@ passport.deserializeUser((id, done) => {
         loggedInUser.userid = res
         app.get('db').get_teams([loggedInUser.id])
         .then(response => {
-          console.log(response)
           loggedInUser.team_name = response
           done(null, loggedInUser);
         })
@@ -115,6 +114,8 @@ app.get("/login/logout", (req, res) => {
   res.redirect('http://localhost:3000/')
 
 });
+
+app.get('/api/bracket/:bracketid', c.getBracket)
 
 
 app.listen(SERVER_PORT, () =>
