@@ -10,6 +10,12 @@ function Nav() {
         <Link to="/home">Home</Link>
       </div>
       <div>
+        <Link to="/bracketcreator">Bracket Creator</Link>
+      </div>
+      <div>
+        <Link to="/allbrackets">Brackets</Link>
+      </div>
+      <div>
       <a href="http://localhost:3005/login/logout">
           <p>Logout</p>
         </a>

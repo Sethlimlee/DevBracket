@@ -116,7 +116,14 @@ app.get("/login/logout", (req, res) => {
 });
 
 app.get('/api/bracket/:bracketid', c.getBracket)
-
+app.get('/api/bracketid', c.getBracketID)
+app.get('/api/allBracketIds', c.getAllBracketIDs)
+app.post('/api/addPlayer1', c.winner)
+app.post('/api/addPlayer2', c.winner2)
+app.post('/api/bracketSize2', c.createBracket2)
+app.post('/api/bracketSize4', c.createBracket4)
+app.post('/api/bracketSize8', c.createBracket8)
+app.post('/api/bracketSize16', c.createBracket16)
 
 app.listen(SERVER_PORT, () =>
   console.log(chalk.cyan(`POWER LEVEL OVER ${SERVER_PORT}!!!!!!!`))

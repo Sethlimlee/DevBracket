@@ -52,9 +52,6 @@ class Home extends Component {
 
     return <div className="text">
     {userDataJSX}
-    <Link to='/bracket'>
-         <h2>Bracket</h2>
-          </Link>
     </div>;
   }
 }
