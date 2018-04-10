@@ -16,6 +16,9 @@ function Nav() {
         <Link to="/allbrackets">Brackets</Link>
       </div>
       <div>
+        <Link to="/rankings">Rankings</Link>
+      </div>
+      <div>
       <a href="http://localhost:3005/login/logout">
           <p>Logout</p>
         </a>

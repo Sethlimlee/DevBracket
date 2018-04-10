@@ -29,6 +29,9 @@ class Bracket extends Component {
   handleWin(player, matchid, bracketid, roundid) {
     const newMatch = Math.ceil(matchid / 2);
     const newRoundID = roundid + 1;
+    axios.post('/api/addWin', {player: player, roundid: roundid}).then(res => {
+      console.log('added win')
+    })
     let player1Check = false;
     let player1MapCheck = this.state.bracket.map(match => {
       if (

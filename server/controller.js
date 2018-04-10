@@ -73,6 +73,40 @@ module.exports = {
     db.get_all_bracketids().then( response => {
       res.status(200).send(response)
     })
+  },
+
+  rankings: (req, res) => {
+    const db = req.app.get("db");
+
+    db.get_rankings().then( response => {
+      res.status(200).send(response)
+    })
+  },
+
+  addWin: (req, res) => {
+    const db = req.app.get("db");
+    const { player, roundid } = req.body;
+    if(roundid == 1){
+      db.add_win1([player]).then(() => {
+        res.status(200).send()
+      })
+    }
+    if(roundid == 2){
+      db.add_win2([player]).then(() => {
+        res.status(200).send()
+      })
+    }
+    if(roundid == 3){
+      db.add_win3([player]).then(() => {
+        res.status(200).send()
+      })
+    }
+    if(roundid == 4){
+      db.add_win4([player]).then(() => {
+        res.status(200).send()
+      })
+    }
+    
   }
 
   // getBracket: (req, res) => {

@@ -6,6 +6,8 @@ import Team from "./Components/Team/Team";
 import Bracket from "./Components/Bracket/Bracket";
 import BracketCreator from './Components/BracketCreator/BracketCreator'
 import AllBrackets from './Components/AllBrackets/AllBrackets'
+import Rankings from './Components/Rankings/Rankings';
+
 
 
 export default (
@@ -16,6 +18,7 @@ export default (
     <Route path = '/bracket/:id' component={Bracket}/> 
     <Route path = '/bracketcreator' component={BracketCreator}/>
     <Route path = '/allbrackets' component={AllBrackets}/>  
+    <Route path = '/rankings' component={Rankings}/>
   </Switch>
 )
 

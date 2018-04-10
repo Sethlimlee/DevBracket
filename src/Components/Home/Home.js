@@ -41,6 +41,7 @@ class Home extends Component {
     const userDataJSX = this.props.user.name ? (
       <div>
         <h1>{user.name}</h1>
+        <p>Total Points: {user.points}</p>
         <h2>Teams:</h2>
         <div>
           {this.startMap()}
@@ -52,6 +53,8 @@ class Home extends Component {
 
     return <div className="text">
     {userDataJSX}
+    <div>
+    </div>
     </div>;
   }
 }
