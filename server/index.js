@@ -1,5 +1,5 @@
 require("dotenv").config();
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const express = require("express"),
   session = require("express-session"),
   passport = require("passport"),
@@ -74,19 +74,8 @@ passport.deserializeUser((id, done) => {
   app
     .get("db")
     .find_session_user([id])
-    .then(user => {
-      // console.log(user);
-      
-      const loggedInUser = user[0]
-     app.get('db').get_users([loggedInUser.userid[0],loggedInUser.userid[1]])
-      .then(res => {
-        loggedInUser.userid = res
-        app.get('db').get_teams([loggedInUser.id])
-        .then(response => {
-          loggedInUser.team_name = response
-          done(null, loggedInUser);
-        })
-      })
+    .then(loggedInUser => {
+      done(null, loggedInUser[0]);
     });
 });
 
@@ -107,25 +96,25 @@ app.get("/login/me", function(req, res) {
   }
 });
 
-app.get('/api/team/:team_name', c.getTeam)
+app.get("/api/team/:team_name", c.getTeam);
 
 app.get("/login/logout", (req, res) => {
   req.logOut();
-  res.redirect('http://localhost:3000/')
-
+  res.redirect("http://localhost:3000/");
 });
 
-app.get('/api/bracket/:bracketid', c.getBracket)
-app.get('/api/bracketid', c.getBracketID)
-app.get('/api/allBracketIds', c.getAllBracketIDs)
-app.get('/api/rankings', c.rankings)
-app.post('/api/addPlayer1', c.winner)
-app.post('/api/addPlayer2', c.winner2)
-app.post('/api/bracketSize2', c.createBracket2)
-app.post('/api/bracketSize4', c.createBracket4)
-app.post('/api/bracketSize8', c.createBracket8)
-app.post('/api/bracketSize16', c.createBracket16)
-app.post('/api/addWin', c.addWin)
+app.get("/api/bracket/:bracketid", c.getBracket);
+app.get("/api/findBracket/:bracketid", c.findBracket);
+app.get("/api/bracketid", c.getBracketID);
+app.get("/api/allBracketIds", c.getAllBracketIDs);
+app.get("/api/rankings", c.rankings);
+app.post("/api/addPlayer1", c.winner);
+app.post("/api/addPlayer2", c.winner2);
+app.post("/api/bracketSize2", c.createBracket2);
+app.post("/api/bracketSize4", c.createBracket4);
+app.post("/api/bracketSize8", c.createBracket8);
+app.post("/api/bracketSize16", c.createBracket16);
+app.post("/api/addWin", c.addWin);
 
 app.listen(SERVER_PORT, () =>
   console.log(chalk.cyan(`POWER LEVEL OVER ${SERVER_PORT}!!!!!!!`))

@@ -7,6 +7,8 @@ import Bracket from "./Components/Bracket/Bracket";
 import BracketCreator from './Components/BracketCreator/BracketCreator'
 import AllBrackets from './Components/AllBrackets/AllBrackets'
 import Rankings from './Components/Rankings/Rankings';
+import JoinBracket from './Components/JoinBracket/JoinBracket';
+import FindBracket from './Components/FindBracket/FindBracket';
 
 
 
@@ -16,8 +18,10 @@ export default (
     <Route path = '/home' component={Home}/> 
     <Route path = '/team/:team_name' component={Team}/> 
     <Route path = '/bracket/:id' component={Bracket}/> 
+    <Route path = '/findbracket/:id' component={FindBracket}/> 
     <Route path = '/bracketcreator' component={BracketCreator}/>
     <Route path = '/allbrackets' component={AllBrackets}/>  
+    <Route path = '/joinbrackets' component={JoinBracket}/>
     <Route path = '/rankings' component={Rankings}/>
   </Switch>
 )

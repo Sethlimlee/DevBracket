@@ -12,7 +12,7 @@ class Bracket extends Component {
     };
     this.handleWin = this.handleWin.bind(this);
   }
-
+  
   componentDidMount() {
     this.getBracket()
   }
@@ -27,6 +27,7 @@ class Bracket extends Component {
   }
 
   handleWin(player, matchid, bracketid, roundid) {
+    
     const newMatch = Math.ceil(matchid / 2);
     const newRoundID = roundid + 1;
     axios.post('/api/addWin', {player: player, roundid: roundid}).then(res => {
@@ -87,6 +88,7 @@ class Bracket extends Component {
     let matchesDisplayedRound5 = this.state.bracket.map(match => {
       if (match.roundid === 5) return <Match key={match.id} match={match} handleWin={this.handleWin}/>;
     });
+    
 
     return (
       <div className="bracket">
@@ -95,7 +97,9 @@ class Bracket extends Component {
         <div className="column">{matchesDisplayedRound3}</div>
         <div className="column">{matchesDisplayedRound4}</div>
         <div className="column">{matchesDisplayedRound5}</div>
+        
       </div>
+      
     );
   }
 }

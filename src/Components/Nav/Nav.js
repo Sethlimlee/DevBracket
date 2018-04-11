@@ -13,6 +13,9 @@ function Nav() {
         <Link to="/bracketcreator">Bracket Creator</Link>
       </div>
       <div>
+        <Link to="/joinbrackets">Join A Bracket</Link>
+      </div>
+      <div>
         <Link to="/allbrackets">Brackets</Link>
       </div>
       <div>

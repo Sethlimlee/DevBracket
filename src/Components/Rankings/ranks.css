@@ -11,3 +11,7 @@
   width: 30vw;
   justify-content: space-between
 }
+
+.button:active {
+  display: none
+}

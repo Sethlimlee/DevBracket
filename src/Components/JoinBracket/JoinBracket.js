@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-class AllBrackets extends Component {
+class JoinBracket extends Component {
   constructor() {
     super();
     this.state = {
@@ -20,9 +20,9 @@ class AllBrackets extends Component {
 
   render() {
     const displayBrackets = this.state.bracketIDs.map(bracket => {
-      if (bracket.bracketfull === "full") {
+      if (bracket.bracketfull === null) {
         return (
-          <Link key={bracket.bracketid} to={`/bracket/${bracket.bracketid}`}>
+          <Link key={bracket.bracketid} to={`/findbracket/${bracket.bracketid}`}>
             <div>{bracket.bracketid}</div>
           </Link>
         );
@@ -31,4 +31,4 @@ class AllBrackets extends Component {
     return <div>{displayBrackets}</div>;
   }
 }
-export default AllBrackets;
+export default JoinBracket;

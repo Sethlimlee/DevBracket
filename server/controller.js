@@ -16,6 +16,13 @@ module.exports = {
     });
   },
 
+  findBracket: (req, res) => {
+    const db = req.app.get("db");
+    db.find_bracket([req.params.bracketid]).then(bracket => {
+      res.status(200).send(bracket);
+    });
+  },
+
   winner: (req, res) => {
     const db = req.app.get("db");
     const { player, newMatch, bracketid, newRoundID } = req.body;
@@ -41,30 +48,30 @@ module.exports = {
 
   createBracket2: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, bracketid } = req.body;
+    const { p1, p2, bracketid, p1name } = req.body;
 
-    db.create_bracket2([p1, p2, bracketid]).then(() => res.status(200).send());
+    db.create_bracket2([p1, p2, bracketid, p1name]).then(() => res.status(200).send());
   },
 
   createBracket4: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, p3, p4, bracketid } = req.body;
+    const { p1, p2, p3, p4, bracketid, p1name } = req.body;
 
-    db.create_bracket4([p1, p2, p3, p4, bracketid]).then(() => res.status(200).send());
+    db.create_bracket4([p1, p2, p3, p4, bracketid, p1name]).then(() => res.status(200).send());
   },
 
   createBracket8: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, p3, p4, p5, p6, p7, p8, bracketid } = req.body;
+    const { p1, p2, p3, p4, p5, p6, p7, p8, bracketid, p1name } = req.body;
 
-    db.create_bracket8([p1, p2, p3, p4, p5, p6, p7, p8, bracketid]).then(() => res.status(200).send());
+    db.create_bracket8([p1, p2, p3, p4, p5, p6, p7, p8, bracketid, p1name]).then(() => res.status(200).send());
   },
 
   createBracket16: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, bracketid } = req.body;
+    const { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, bracketid, p1name } = req.body;
 
-    db.create_bracket16([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, bracketid]).then(() => res.status(200).send());
+    db.create_bracket16([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, bracketid, p1name]).then(() => res.status(200).send());
   },
 
   getAllBracketIDs: (req, res) => {
