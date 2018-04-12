@@ -9,9 +9,10 @@ class Match extends Component {
     };
   }
 
-  handleWin(winner) {
+  handleWin(winner, winnerName) {
     this.props.handleWin(
       winner,
+      winnerName,
       this.props.match.match,
       this.props.match.bracketid,
       this.props.match.roundid
@@ -32,7 +33,7 @@ class Match extends Component {
             <button
               id="button"
               onClick={() => {
-                this.handleWin(this.props.match.player1);
+                this.handleWin(this.props.match.player1, this.props.match.player1name);
               }}
               >
               {" "}
@@ -50,7 +51,7 @@ class Match extends Component {
             <button
               id="button"
               onClick={() => {
-                this.handleWin(this.props.match.player2);
+                this.handleWin(this.props.match.player2, this.props.match.player2name);
               }}
               >
               {" "}

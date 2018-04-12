@@ -25,16 +25,16 @@ module.exports = {
 
   winner: (req, res) => {
     const db = req.app.get("db");
-    const { player, newMatch, bracketid, newRoundID } = req.body;
-    db.update_match([player, newMatch, bracketid, newRoundID]).then(() => {
+    const { player, newMatch, bracketid, newRoundID, playerName } = req.body;
+    db.update_match([player, newMatch, bracketid, newRoundID, playerName]).then(() => {
       res.status(200).send();
     });
   },
 
   winner2: (req, res) => {
     const db = req.app.get("db");
-    const { player, newMatch, bracketid, newRoundID } = req.body;
-    db.update_match2([player, newMatch, bracketid, newRoundID]).then(() => {
+    const { player, newMatch, bracketid, newRoundID, playerName } = req.body;
+    db.update_match2([player, newMatch, bracketid, newRoundID, playerName]).then(() => {
       res.status(200).send();
     });
   },
@@ -50,70 +50,143 @@ module.exports = {
     const db = req.app.get("db");
     const { p1, p2, bracketid, p1name } = req.body;
 
-    db.create_bracket2([p1, p2, bracketid, p1name]).then(() => res.status(200).send());
+    db
+      .create_bracket2([p1, p2, bracketid, p1name])
+      .then(() => res.status(200).send());
   },
 
   createBracket4: (req, res) => {
     const db = req.app.get("db");
     const { p1, p2, p3, p4, bracketid, p1name } = req.body;
 
-    db.create_bracket4([p1, p2, p3, p4, bracketid, p1name]).then(() => res.status(200).send());
+    db
+      .create_bracket4([p1, p2, p3, p4, bracketid, p1name])
+      .then(() => res.status(200).send());
   },
 
   createBracket8: (req, res) => {
     const db = req.app.get("db");
     const { p1, p2, p3, p4, p5, p6, p7, p8, bracketid, p1name } = req.body;
 
-    db.create_bracket8([p1, p2, p3, p4, p5, p6, p7, p8, bracketid, p1name]).then(() => res.status(200).send());
+    db
+      .create_bracket8([p1, p2, p3, p4, p5, p6, p7, p8, bracketid, p1name])
+      .then(() => res.status(200).send());
   },
 
   createBracket16: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, bracketid, p1name } = req.body;
+    const {
+      p1,
+      p2,
+      p3,
+      p4,
+      p5,
+      p6,
+      p7,
+      p8,
+      p9,
+      p10,
+      p11,
+      p12,
+      p13,
+      p14,
+      p15,
+      p16,
+      bracketid,
+      p1name
+    } = req.body;
 
-    db.create_bracket16([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, bracketid, p1name]).then(() => res.status(200).send());
+    db
+      .create_bracket16([
+        p1,
+        p2,
+        p3,
+        p4,
+        p5,
+        p6,
+        p7,
+        p8,
+        p9,
+        p10,
+        p11,
+        p12,
+        p13,
+        p14,
+        p15,
+        p16,
+        bracketid,
+        p1name
+      ])
+      .then(() => res.status(200).send());
   },
 
   getAllBracketIDs: (req, res) => {
     const db = req.app.get("db");
 
-    db.get_all_bracketids().then( response => {
-      res.status(200).send(response)
-    })
+    db.get_all_bracketids().then(response => {
+      res.status(200).send(response);
+    });
   },
 
   rankings: (req, res) => {
     const db = req.app.get("db");
 
-    db.get_rankings().then( response => {
-      res.status(200).send(response)
-    })
+    db.get_rankings().then(response => {
+      res.status(200).send(response);
+    });
   },
 
   addWin: (req, res) => {
     const db = req.app.get("db");
     const { player, roundid } = req.body;
-    if(roundid == 1){
+    if (roundid == 1) {
       db.add_win1([player]).then(() => {
-        res.status(200).send()
-      })
+        res.status(200).send();
+      });
     }
-    if(roundid == 2){
+    if (roundid == 2) {
       db.add_win2([player]).then(() => {
-        res.status(200).send()
-      })
+        res.status(200).send();
+      });
     }
-    if(roundid == 3){
+    if (roundid == 3) {
       db.add_win3([player]).then(() => {
-        res.status(200).send()
-      })
+        res.status(200).send();
+      });
     }
-    if(roundid == 4){
+    if (roundid == 4) {
       db.add_win4([player]).then(() => {
-        res.status(200).send()
-      })
+        res.status(200).send();
+      });
     }
-    
+  },
+
+  joinBracket: (req, res) => {
+    const db = req.app.get("db");
+    const { player1, player1name, total, matchid } = req.body;
+    if (total !== 1) {
+      db.join_bracket([player1, player1name, matchid]).then(() => {
+        res.status(200).send();
+      });
+    }
+  },
+
+  joinBracket2: (req, res) => {
+    const db = req.app.get("db");
+    const { player2, player2name, total, matchid, bracketid } = req.body;
+    if (total !== 1) {
+      db.join_bracket2([player2, player2name, matchid]).then(() => {
+        db.get_bracket;
+        res.status(200).send();
+      });
+    } else {
+      console.log('made it here')
+      db.join_bracket2([player2, player2name, matchid]).then(() => {
+        db.make_full([bracketid]).then(() => {
+          res.status(200).send();
+        });
+      });
+    }
   }
 
   // getBracket: (req, res) => {
