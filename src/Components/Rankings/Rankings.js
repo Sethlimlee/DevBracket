@@ -6,19 +6,55 @@ class Rankings extends Component {
   constructor() {
     super();
     this.state = {
-      rankings: []
+      pongRankings: [],
+      foosRankings: [],
+      showPong: true,
+      showFoos: false
     };
   }
   componentDidMount() {
     axios.get("/api/rankings").then(res =>
       this.setState({
-        rankings: res.data
+        pongRankings: res.data
+      })
+    );
+    axios.get("/api/rankingsfoos").then(res =>
+      this.setState({
+        foosRankings: res.data
       })
     );
   }
 
+  handleFoos() {
+    this.setState({
+      showPong: false,
+      showFoos: true
+    });
+  }
+  handlePong() {
+    this.setState({
+      showPong: true,
+      showFoos: false
+    });
+  }
+
   render() {
-    const rankingDisplay = this.state.rankings.map((player, i) => {
+    const rankingDisplayPong = this.state.pongRankings.map((player, i) => {
+      return (
+        <div key={player.id} className="row">
+          <div>
+            <h3>{i + 1}:</h3>
+          </div>
+          <div>
+            <h3>{player.name}</h3>
+          </div>
+          <div>
+            <h3>{player.points}</h3>
+          </div>
+        </div>
+      );
+    });
+    const rankingDisplayFoos = this.state.foosRankings.map((player, i) => {
       return (
         <div key={player.id} className="row">
           <div>
@@ -35,8 +71,21 @@ class Rankings extends Component {
     });
     return (
       <div>
-        <h1>Rankings</h1>
-        <div className="ranks">{rankingDisplay}</div>
+        {this.state.showPong === true ? (
+          <div>
+            <h1>Pong Rankings</h1>
+            <button onClick={() => this.handlePong()}>Pong</button>
+            <button onClick={() => this.handleFoos()}>Foos</button>
+            <div className="ranks">{rankingDisplayPong}</div>
+          </div>
+        ) : (
+          <div>
+            <h1>Foos Rankings</h1>
+            <button onClick={() => this.handlePong()}>Pong</button>
+            <button onClick={() => this.handleFoos()}>Foos</button>
+            <div className="ranks">{rankingDisplayFoos}</div>
+          </div>
+        )}
       </div>
     );
   }

@@ -108,6 +108,7 @@ app.get("/api/findBracket/:bracketid", c.findBracket);
 app.get("/api/bracketid", c.getBracketID);
 app.get("/api/allBracketIds", c.getAllBracketIDs);
 app.get("/api/rankings", c.rankings);
+app.get("/api/rankingsfoos", c.rankingsfoos);
 app.post("/api/addPlayer1", c.winner);
 app.post("/api/addPlayer2", c.winner2);
 app.post("/api/bracketSize2", c.createBracket2);

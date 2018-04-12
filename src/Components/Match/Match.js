@@ -15,7 +15,8 @@ class Match extends Component {
       winnerName,
       this.props.match.match,
       this.props.match.bracketid,
-      this.props.match.roundid
+      this.props.match.roundid,
+      this.props.match.sport
     );
     this.setState({
       show: false

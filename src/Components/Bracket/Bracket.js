@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Match from "../Match/Match";
+import Winner from '../Winner/Winner';
 import axios from "axios";
 import "./bracket.css";
 
@@ -26,11 +27,11 @@ class Bracket extends Component {
     });
   }
 
-  handleWin(player, playerName, matchid, bracketid, roundid) {
+  handleWin(player, playerName, matchid, bracketid, roundid, sport) {
     
     const newMatch = Math.ceil(matchid / 2);
     const newRoundID = roundid + 1;
-    axios.post('/api/addWin', {player: player, roundid: roundid}).then(res => {
+    axios.post('/api/addWin', {player: player, roundid: roundid, sport: sport}).then(res => {
       console.log('added win')
     })
     let player1Check = false;
@@ -65,30 +66,33 @@ class Bracket extends Component {
 
   render() {
     let matchesDisplayedRound1 = this.state.bracket.map(match => {
-      if (match.roundid === 1)
+      if (match.roundid === 1 && match.winner !== 'yes')
         return (
           <Match key={match.id} match={match} handleWin={this.handleWin} />
         );
     });
     let matchesDisplayedRound2 = this.state.bracket.map(match => {
-      if (match.roundid === 2)
+      if (match.roundid === 2 && match.winner !== 'yes')
         return (
           <Match key={match.id} match={match} handleWin={this.handleWin} />
         );
     });
 
     let matchesDisplayedRound3 = this.state.bracket.map(match => {
-      if (match.roundid === 3) return <Match key={match.id} match={match} handleWin={this.handleWin} />;
+      if (match.roundid === 3 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin} />;
     });
 
     let matchesDisplayedRound4 = this.state.bracket.map(match => {
-      if (match.roundid === 4) return <Match key={match.id} match={match} handleWin={this.handleWin}/>;
+      if (match.roundid === 4 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin}/>;
     });
 
     let matchesDisplayedRound5 = this.state.bracket.map(match => {
-      if (match.roundid === 5) return <Match key={match.id} match={match} handleWin={this.handleWin}/>;
+      if (match.roundid === 5 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin}/>;
     });
     
+    let matchesDisplayedRound6 = this.state.bracket.map(match => {
+      if (match.winner === 'yes') return <Winner key={match.id} match={match}/>;
+    });
 
     return (
       <div className="bracket">
@@ -97,7 +101,7 @@ class Bracket extends Component {
         <div className="column">{matchesDisplayedRound3}</div>
         <div className="column">{matchesDisplayedRound4}</div>
         <div className="column">{matchesDisplayedRound5}</div>
-        
+        <div className="column">{matchesDisplayedRound6}</div>
       </div>
       
     );

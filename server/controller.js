@@ -26,17 +26,21 @@ module.exports = {
   winner: (req, res) => {
     const db = req.app.get("db");
     const { player, newMatch, bracketid, newRoundID, playerName } = req.body;
-    db.update_match([player, newMatch, bracketid, newRoundID, playerName]).then(() => {
-      res.status(200).send();
-    });
+    db
+      .update_match([player, newMatch, bracketid, newRoundID, playerName])
+      .then(() => {
+        return res.status(200).send();
+      });
   },
 
   winner2: (req, res) => {
     const db = req.app.get("db");
     const { player, newMatch, bracketid, newRoundID, playerName } = req.body;
-    db.update_match2([player, newMatch, bracketid, newRoundID, playerName]).then(() => {
-      res.status(200).send();
-    });
+    db
+      .update_match2([player, newMatch, bracketid, newRoundID, playerName])
+      .then(() => {
+        res.status(200).send();
+      });
   },
 
   getBracketID: (req, res) => {
@@ -48,28 +52,52 @@ module.exports = {
 
   createBracket2: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, bracketid, p1name } = req.body;
+    const { p1, p2, bracketid, p1name, sport } = req.body;
 
     db
-      .create_bracket2([p1, p2, bracketid, p1name])
+      .create_bracket2([p1, p2, bracketid, p1name, sport])
       .then(() => res.status(200).send());
   },
 
   createBracket4: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, p3, p4, bracketid, p1name } = req.body;
+    const { p1, p2, p3, p4, bracketid, p1name, sport } = req.body;
 
     db
-      .create_bracket4([p1, p2, p3, p4, bracketid, p1name])
+      .create_bracket4([p1, p2, p3, p4, bracketid, p1name, sport])
       .then(() => res.status(200).send());
   },
 
   createBracket8: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, p3, p4, p5, p6, p7, p8, bracketid, p1name } = req.body;
+    const {
+      p1,
+      p2,
+      p3,
+      p4,
+      p5,
+      p6,
+      p7,
+      p8,
+      bracketid,
+      p1name,
+      sport
+    } = req.body;
 
     db
-      .create_bracket8([p1, p2, p3, p4, p5, p6, p7, p8, bracketid, p1name])
+      .create_bracket8([
+        p1,
+        p2,
+        p3,
+        p4,
+        p5,
+        p6,
+        p7,
+        p8,
+        bracketid,
+        p1name,
+        sport
+      ])
       .then(() => res.status(200).send());
   },
 
@@ -93,7 +121,8 @@ module.exports = {
       p15,
       p16,
       bracketid,
-      p1name
+      p1name,
+      sport
     } = req.body;
 
     db
@@ -115,7 +144,8 @@ module.exports = {
         p15,
         p16,
         bracketid,
-        p1name
+        p1name,
+        sport
       ])
       .then(() => res.status(200).send());
   },
@@ -136,28 +166,61 @@ module.exports = {
     });
   },
 
+  rankingsfoos: (req, res) => {
+    const db = req.app.get("db");
+
+    db.get_rankingsfoos().then(response => {
+      res.status(200).send(response);
+    });
+  },
+
   addWin: (req, res) => {
     const db = req.app.get("db");
-    const { player, roundid } = req.body;
-    if (roundid == 1) {
-      db.add_win1([player]).then(() => {
-        res.status(200).send();
-      });
+    const { player, roundid, sport } = req.body;
+    if (sport === "Pong") {
+      if (roundid == 1) {
+        db.add_win1([player]).then(() => {
+          res.status(200).send();
+        });
+      }
+      if (roundid == 2) {
+        db.add_win2([player]).then(() => {
+          res.status(200).send();
+        });
+      }
+      if (roundid == 3) {
+        db.add_win3([player]).then(() => {
+          res.status(200).send();
+        });
+      }
+      if (roundid == 4) {
+        db.add_win4([player]).then(() => {
+          res.status(200).send();
+        });
+      }
     }
-    if (roundid == 2) {
-      db.add_win2([player]).then(() => {
-        res.status(200).send();
-      });
-    }
-    if (roundid == 3) {
-      db.add_win3([player]).then(() => {
-        res.status(200).send();
-      });
-    }
-    if (roundid == 4) {
-      db.add_win4([player]).then(() => {
-        res.status(200).send();
-      });
+
+    if (sport === "Foos") {
+      if (roundid == 1) {
+        db.add_win1Foos([player]).then(() => {
+          res.status(200).send();
+        });
+      }
+      if (roundid == 2) {
+        db.add_win2Foos([player]).then(() => {
+          res.status(200).send();
+        });
+      }
+      if (roundid == 3) {
+        db.add_win3Foos([player]).then(() => {
+          res.status(200).send();
+        });
+      }
+      if (roundid == 4) {
+        db.add_win4Foos([player]).then(() => {
+          res.status(200).send();
+        });
+      }
     }
   },
 
@@ -180,7 +243,7 @@ module.exports = {
         res.status(200).send();
       });
     } else {
-      console.log('made it here')
+      console.log("made it here");
       db.join_bracket2([player2, player2name, matchid]).then(() => {
         db.make_full([bracketid]).then(() => {
           res.status(200).send();

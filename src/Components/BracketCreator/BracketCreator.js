@@ -9,7 +9,8 @@ class BracketCreator extends Component {
     this.state = {
       player: null,
       bracketSize: 0,
-      bracketid: 0
+      bracketid: 0,
+      sport: ''
     };
   }
 
@@ -32,13 +33,20 @@ class BracketCreator extends Component {
     });
   }
 
+  handleSport(value) {
+    this.setState({
+      sport: value
+    })
+  }
+
   submitBracket() {
     if (this.state.bracketSize == 2) {
       const bracketInfo = {
         p1: this.props.user.id,
         p1name: this.props.user.name,
         p2: this.state.player,
-        bracketid: this.state.bracketid
+        bracketid: this.state.bracketid,
+        sport: this.state.sport
       };
       axios.post("/api/bracketSize2", bracketInfo).then(response => {
         this.getBracketID();
@@ -51,7 +59,8 @@ class BracketCreator extends Component {
         p2: this.state.player,
         p3: this.state.player,
         p4: this.state.player,
-        bracketid: this.state.bracketid
+        bracketid: this.state.bracketid,
+        sport: this.state.sport
       };
       axios.post("/api/bracketSize4", bracketInfo).then(response => {
         this.getBracketID();
@@ -68,7 +77,8 @@ class BracketCreator extends Component {
         p6: this.state.player,
         p7: this.state.player,
         p8: this.state.player,
-        bracketid: this.state.bracketid
+        bracketid: this.state.bracketid,
+        sport: this.state.sport
       };
       axios.post("/api/bracketSize8", bracketInfo).then(response => {
         this.getBracketID();
@@ -93,7 +103,8 @@ class BracketCreator extends Component {
         p14: this.state.player,
         p15: this.state.player,
         p16: this.state.player,
-        bracketid: this.state.bracketid
+        bracketid: this.state.bracketid,
+        sport: this.state.sport
       };
       axios.post("/api/bracketSize16", bracketInfo).then(response => {
         this.getBracketID();
@@ -107,11 +118,26 @@ class BracketCreator extends Component {
     return (
       <div>
         <div>
+          <h1>BRACKET #{this.state.bracketid}</h1>
+        </div>
+        <div>
           # of Players:{" "}
-          <input onChange={e => this.handleBracketSize(e.target.value)} />
+          <button onClick={e => this.handleBracketSize(2)}>2</button>
+          <button onClick={e => this.handleBracketSize(4)}>4</button>
+          <button onClick={e => this.handleBracketSize(8)}>8</button>
+          <button onClick={e => this.handleBracketSize(16)}>16</button>
           <p />
         </div>
         <div>
+        Sport:{" "}
+        <button onClick={e => this.handleSport('Pong')}>Ping Pong</button>
+          <button onClick={e => this.handleSport('Foos')}>Foosball</button>
+        <p />
+        </div>
+        <div>
+          <div>Bracket Size: {this.state.bracketSize}</div>
+          <div>Sport: {this.state.sport}</div>
+          
           <p />
           <button onClick={() => this.submitBracket()}>Submit</button>
         </div>
