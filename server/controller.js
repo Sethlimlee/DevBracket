@@ -29,23 +29,7 @@ module.exports = {
     db
       .update_match([player, newMatch, bracketid, newRoundID, playerName])
       .then(() => {
-        
-        console.log("checking to see if match is complete");
-        db.get_bracket([bracketid]).then(bracket => {
-          let toggle = true
-          for (let i = 0; i < bracket.length; i++) {
-            console.log(bracket[i].player1name);
-            if (bracket[i].player1name === null) {
-              toggle = false
-            }
-          }
-          if (toggle === false){
-            console.log("match not complete");
-            res.status(200).send();
-          } else {
-            
-            res.status(200).send()}
-        });
+        return res.status(200).send();
       });
   },
 
@@ -276,6 +260,7 @@ module.exports = {
     const db = req.app.get("db");
     const { match, bracketid, roundid } = req.body;
     db.button([match, bracketid, roundid]).then(() => {
+      console.log('button should be removed')
       res.status(200).send();
     });
   }
