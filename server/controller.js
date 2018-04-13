@@ -29,7 +29,23 @@ module.exports = {
     db
       .update_match([player, newMatch, bracketid, newRoundID, playerName])
       .then(() => {
-        return res.status(200).send();
+        
+        console.log("checking to see if match is complete");
+        db.get_bracket([bracketid]).then(bracket => {
+          let toggle = true
+          for (let i = 0; i < bracket.length; i++) {
+            console.log(bracket[i].player1name);
+            if (bracket[i].player1name === null) {
+              toggle = false
+            }
+          }
+          if (toggle === false){
+            console.log("match not complete");
+            res.status(200).send();
+          } else {
+            
+            res.status(200).send()}
+        });
       });
   },
 
@@ -176,11 +192,13 @@ module.exports = {
 
   addWin: (req, res) => {
     const db = req.app.get("db");
-    const { player, roundid, sport } = req.body;
+    const { player, roundid, sport, loser } = req.body;
     if (sport === "Pong") {
       if (roundid == 1) {
         db.add_win1([player]).then(() => {
-          res.status(200).send();
+          db.add_lose1([loser]).then(() => {
+            res.status(200).send();
+          })
         });
       }
       if (roundid == 2) {
@@ -203,7 +221,9 @@ module.exports = {
     if (sport === "Foos") {
       if (roundid == 1) {
         db.add_win1Foos([player]).then(() => {
-          res.status(200).send();
+          db.add_lose1Foos([loser]).then(() => {
+            res.status(200).send();
+          })
         });
       }
       if (roundid == 2) {
@@ -250,6 +270,14 @@ module.exports = {
         });
       });
     }
+  },
+
+  button: (req, res) => {
+    const db = req.app.get("db");
+    const { match, bracketid, roundid } = req.body;
+    db.button([match, bracketid, roundid]).then(() => {
+      res.status(200).send();
+    });
   }
 
   // getBracket: (req, res) => {

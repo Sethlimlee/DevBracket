@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./match.css";
+import axios from 'axios';
 
 class Match extends Component {
   constructor() {
@@ -9,17 +10,21 @@ class Match extends Component {
     };
   }
 
-  handleWin(winner, winnerName) {
+  handleWin(winner, winnerName, loser) {
     this.props.handleWin(
       winner,
       winnerName,
+      loser,
       this.props.match.match,
       this.props.match.bracketid,
       this.props.match.roundid,
       this.props.match.sport
     );
-    this.setState({
-      show: false
+    axios.post('/api/button', {match: this.props.match.match, bracketid: this.props.match.bracketid, roundid: this.props.match.roundid})
+    .then(response => {
+      this.setState({
+        show: true
+      })
     })
   }
 
@@ -29,12 +34,12 @@ class Match extends Component {
         <div>
           Name: {(this.props.match.player1name !== 'null') ? this.props.match.player1name : ' '}{" "}
           {
-            this.state.show 
+            this.props.match.button !== 'no' 
             ? 
             <button
               id="button"
               onClick={() => {
-                this.handleWin(this.props.match.player1, this.props.match.player1name);
+                this.handleWin(this.props.match.player1, this.props.match.player1name, this.props.match.player2);
               }}
               >
               {" "}
@@ -47,12 +52,12 @@ class Match extends Component {
         <div>
           Name: {(this.props.match.player2name !== 'null') ? this.props.match.player2name : ' '}{" "}
           {
-            this.state.show 
+            this.props.match.button !== 'no' 
             ? 
             <button
               id="button"
               onClick={() => {
-                this.handleWin(this.props.match.player2, this.props.match.player2name);
+                this.handleWin(this.props.match.player2, this.props.match.player2name, this.props.match.player1);
               }}
               >
               {" "}

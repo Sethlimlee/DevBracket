@@ -118,6 +118,7 @@ app.post("/api/bracketSize16", c.createBracket16);
 app.post("/api/addWin", c.addWin);
 app.post("/api/joinbracket", c.joinBracket);
 app.post("/api/joinbracket2", c.joinBracket2);
+app.post("/api/button", c.button);
 
 app.listen(SERVER_PORT, () =>
   console.log(chalk.cyan(`POWER LEVEL OVER ${SERVER_PORT}!!!!!!!`))

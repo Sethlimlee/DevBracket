@@ -27,11 +27,11 @@ class Bracket extends Component {
     });
   }
 
-  handleWin(player, playerName, matchid, bracketid, roundid, sport) {
+  handleWin(player, playerName, loser,  matchid, bracketid, roundid, sport) {
     
     const newMatch = Math.ceil(matchid / 2);
     const newRoundID = roundid + 1;
-    axios.post('/api/addWin', {player: player, roundid: roundid, sport: sport}).then(res => {
+    axios.post('/api/addWin', {player: player, roundid: roundid, sport: sport, loser: loser}).then(res => {
       console.log('added win')
     })
     let player1Check = false;
