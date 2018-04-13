@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getUserInfo } from "../../ducks/users";
 import Match from "../Match/Match";
 import Winner from '../Winner/Winner';
 import axios from "axios";
@@ -65,29 +67,30 @@ class Bracket extends Component {
   }
 
   render() {
+
     let matchesDisplayedRound1 = this.state.bracket.map(match => {
       if (match.roundid === 1 && match.winner !== 'yes')
         return (
-          <Match key={match.id} match={match} handleWin={this.handleWin} />
+          <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>
         );
     });
     let matchesDisplayedRound2 = this.state.bracket.map(match => {
       if (match.roundid === 2 && match.winner !== 'yes')
         return (
-          <Match key={match.id} match={match} handleWin={this.handleWin} />
+          <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>
         );
     });
 
     let matchesDisplayedRound3 = this.state.bracket.map(match => {
-      if (match.roundid === 3 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin} />;
+      if (match.roundid === 3 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>;
     });
 
     let matchesDisplayedRound4 = this.state.bracket.map(match => {
-      if (match.roundid === 4 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin}/>;
+      if (match.roundid === 4 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>;
     });
 
     let matchesDisplayedRound5 = this.state.bracket.map(match => {
-      if (match.roundid === 5 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin}/>;
+      if (match.roundid === 5 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>;
     });
     
     let matchesDisplayedRound6 = this.state.bracket.map(match => {
@@ -95,16 +98,30 @@ class Bracket extends Component {
     });
 
     return (
-      <div className="bracket">
+      
+      <div>
+      {this.props.user.id ? (
+        <div className="bracket">
         <div className="column">{matchesDisplayedRound1}</div>
         <div className="column2">{matchesDisplayedRound2}</div>
         <div className="column">{matchesDisplayedRound3}</div>
         <div className="column">{matchesDisplayedRound4}</div>
         <div className="column">{matchesDisplayedRound5}</div>
         <div className="column">{matchesDisplayedRound6}</div>
+        </div>
+    ) : (
+      <p>bruh you need to log in first</p>
+    )}
       </div>
-      
     );
   }
 }
-export default Bracket;
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    user: state.user
+  };
+}
+
+export default connect(mapStateToProps, { getUserInfo })(Bracket);
+

@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { getUserInfo } from "../../ducks/users";
 import "./match.css";
 import axios from "axios";
 
@@ -12,20 +10,8 @@ class Match extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.getUserInfo();
-  }
 
   handleWin(winner, winnerName, loser) {
-    this.props.handleWin(
-      winner,
-      winnerName,
-      loser,
-      this.props.match.match,
-      this.props.match.bracketid,
-      this.props.match.roundid,
-      this.props.match.sport
-    );
     axios
       .post("/api/button", {
         match: this.props.match.match,
@@ -33,17 +19,23 @@ class Match extends Component {
         roundid: this.props.match.roundid
       })
       .then(response => {
-        this.setState({
-          show: true
-        });
+        this.props.handleWin(
+          winner,
+          winnerName,
+          loser,
+          this.props.match.match,
+          this.props.match.bracketid,
+          this.props.match.roundid,
+          this.props.match.sport
+        );
       });
   }
 
   render() {
     return (
       <div className="match">
-        {this.props.user.id === this.props.match.player1 ||
-        this.props.user.id === this.props.match.player2 ? (
+        {this.props.id === this.props.match.player1 ||
+        this.props.id === this.props.match.player2 ? (
           <div>
             <div>
               Name:{" "}
@@ -119,11 +111,4 @@ class Match extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  console.log(state);
-  return {
-    user: state.user
-  };
-}
-
-export default connect(mapStateToProps, { getUserInfo })(Match);
+export default Match;
