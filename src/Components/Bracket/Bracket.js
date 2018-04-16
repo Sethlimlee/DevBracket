@@ -29,7 +29,7 @@ class Bracket extends Component {
     });
   }
 
-  handleWin(player, playerName, loser,  matchid, bracketid, roundid, sport) {
+  handleWin(player, playerName, loser, playerImg,  matchid, bracketid, roundid, sport) {
     
     const newMatch = Math.ceil(matchid / 2);
     const newRoundID = roundid + 1;
@@ -49,7 +49,7 @@ class Bracket extends Component {
     if (player1Check === true) {
       console.log("player1 was found");
       axios
-        .post("/api/addPlayer2", { player, newMatch, bracketid, newRoundID, playerName })
+        .post("/api/addPlayer2", { player, newMatch, bracketid, newRoundID, playerName, playerImg })
         .then(res => {
           console.log("back from database");
           this.getBracket()
@@ -57,7 +57,7 @@ class Bracket extends Component {
     }
     if (player1Check === false) {
       axios
-        .post("/api/addPlayer1", { player, newMatch, bracketid, newRoundID, playerName })
+        .post("/api/addPlayer1", { player, newMatch, bracketid, newRoundID, playerName, playerImg })
         .then(res => {
           console.log("back from database");
           this.getBracket()

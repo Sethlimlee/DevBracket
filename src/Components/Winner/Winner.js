@@ -8,8 +8,8 @@ class Winner extends Component {
     return (
       <div className="match">
       <h3>WINNER</h3>
-        <div>
-          Name:{" "}
+      <div className='player'>
+              {<img className='pic' src={this.props.match.player1img} alt="" />}
           {this.props.match.player1name !== "null"
             ? this.props.match.player1name
             : " "}{" "}

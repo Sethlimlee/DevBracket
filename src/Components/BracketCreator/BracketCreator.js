@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../ducks/users";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class BracketCreator extends Component {
   constructor() {
     super();
     this.state = {
       player: null,
-      bracketSize: 0,
+      bracketSize: 2,
       bracketid: 0,
-      sport: ''
+      sport: 'Pong'
     };
   }
 
@@ -44,6 +45,7 @@ class BracketCreator extends Component {
       const bracketInfo = {
         p1: this.props.user.id,
         p1name: this.props.user.name,
+        p1img: this.props.user.img,
         p2: this.state.player,
         bracketid: this.state.bracketid,
         sport: this.state.sport
@@ -56,6 +58,7 @@ class BracketCreator extends Component {
       const bracketInfo = {
         p1: this.props.user.id,
         p1name: this.props.user.name,
+        p1img: this.props.user.img,
         p2: this.state.player,
         p3: this.state.player,
         p4: this.state.player,
@@ -70,6 +73,7 @@ class BracketCreator extends Component {
       const bracketInfo = {
         p1: this.props.user.id,
         p1name: this.props.user.name,
+        p1img: this.props.user.img,
         p2: this.state.player,
         p3: this.state.player,
         p4: this.state.player,
@@ -88,6 +92,7 @@ class BracketCreator extends Component {
       const bracketInfo = {
         p1: this.props.user.id,
         p1name: this.props.user.name,
+        p1img: this.props.user.img,
         p2: this.state.player,
         p3: this.state.player,
         p4: this.state.player,
@@ -114,6 +119,7 @@ class BracketCreator extends Component {
 
   render() {
     console.log(this.state.bracketid);
+    console.log(this.props.user.img)
 
     return (
       <div>
@@ -139,7 +145,9 @@ class BracketCreator extends Component {
           <div>Sport: {this.state.sport}</div>
           
           <p />
+          <Link to={`/findbracket/${this.state.bracketid}`}>
           <button onClick={() => this.submitBracket()}>Submit</button>
+          </Link>
         </div>
       </div>
     );

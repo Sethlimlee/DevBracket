@@ -9,3 +9,14 @@
   justify-content: space-evenly;
   background-color: white;
 }
+
+.pic {
+  height: 30px;
+  width: 30px;
+  padding-right: 5px;
+}
+
+.player {
+  display: flex;
+  align-items: center
+}

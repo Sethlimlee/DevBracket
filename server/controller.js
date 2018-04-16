@@ -25,9 +25,9 @@ module.exports = {
 
   winner: (req, res) => {
     const db = req.app.get("db");
-    const { player, newMatch, bracketid, newRoundID, playerName } = req.body;
+    const { player, newMatch, bracketid, newRoundID, playerName, playerImg } = req.body;
     db
-      .update_match([player, newMatch, bracketid, newRoundID, playerName])
+      .update_match([player, newMatch, bracketid, newRoundID, playerName, playerImg])
       .then(() => {
         return res.status(200).send();
       });
@@ -35,9 +35,9 @@ module.exports = {
 
   winner2: (req, res) => {
     const db = req.app.get("db");
-    const { player, newMatch, bracketid, newRoundID, playerName } = req.body;
+    const { player, newMatch, bracketid, newRoundID, playerName, playerImg } = req.body;
     db
-      .update_match2([player, newMatch, bracketid, newRoundID, playerName])
+      .update_match2([player, newMatch, bracketid, newRoundID, playerName, playerImg])
       .then(() => {
         res.status(200).send();
       });
@@ -52,19 +52,19 @@ module.exports = {
 
   createBracket2: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, bracketid, p1name, sport } = req.body;
+    const { p1, p2, bracketid, p1name, sport, p1img } = req.body;
 
     db
-      .create_bracket2([p1, p2, bracketid, p1name, sport])
+      .create_bracket2([p1, p2, bracketid, p1name, sport, p1img])
       .then(() => res.status(200).send());
   },
 
   createBracket4: (req, res) => {
     const db = req.app.get("db");
-    const { p1, p2, p3, p4, bracketid, p1name, sport } = req.body;
+    const { p1, p2, p3, p4, bracketid, p1name, sport, p1img } = req.body;
 
     db
-      .create_bracket4([p1, p2, p3, p4, bracketid, p1name, sport])
+      .create_bracket4([p1, p2, p3, p4, bracketid, p1name, sport, p1img])
       .then(() => res.status(200).send());
   },
 
@@ -81,7 +81,7 @@ module.exports = {
       p8,
       bracketid,
       p1name,
-      sport
+      sport, p1img
     } = req.body;
 
     db
@@ -96,7 +96,7 @@ module.exports = {
         p8,
         bracketid,
         p1name,
-        sport
+        sport, p1img
       ])
       .then(() => res.status(200).send());
   },
@@ -122,7 +122,7 @@ module.exports = {
       p16,
       bracketid,
       p1name,
-      sport
+      sport, p1img
     } = req.body;
 
     db
@@ -145,7 +145,7 @@ module.exports = {
         p16,
         bracketid,
         p1name,
-        sport
+        sport, p1img
       ])
       .then(() => res.status(200).send());
   },
@@ -230,9 +230,9 @@ module.exports = {
 
   joinBracket: (req, res) => {
     const db = req.app.get("db");
-    const { player1, player1name, total, matchid } = req.body;
+    const { player1, player1name, total, matchid, player1img } = req.body;
     if (total !== 1) {
-      db.join_bracket([player1, player1name, matchid]).then(() => {
+      db.join_bracket([player1, player1name, matchid, player1img ]).then(() => {
         res.status(200).send();
       });
     }
@@ -240,15 +240,15 @@ module.exports = {
 
   joinBracket2: (req, res) => {
     const db = req.app.get("db");
-    const { player2, player2name, total, matchid, bracketid } = req.body;
+    const { player2, player2name, total, matchid, bracketid, player2img } = req.body;
     if (total !== 1) {
-      db.join_bracket2([player2, player2name, matchid]).then(() => {
+      db.join_bracket2([player2, player2name, matchid, player2img ]).then(() => {
         db.get_bracket;
         res.status(200).send();
       });
     } else {
       console.log("made it here");
-      db.join_bracket2([player2, player2name, matchid]).then(() => {
+      db.join_bracket2([player2, player2name, matchid, player2img]).then(() => {
         db.make_full([bracketid]).then(() => {
           res.status(200).send();
         });
@@ -263,6 +263,24 @@ module.exports = {
       console.log('button should be removed')
       res.status(200).send();
     });
+  },
+
+  deleteBracket: (req, res) => {
+    const db = req.app.get("db");
+    db.delete_bracket([req.params.bracketid]).then(response => {
+      res.status(200).send()
+    })
+  },
+  
+  updateUser: (req, res) => {
+    const db = req.app.get("db");
+    const { img, name, className } = req.body;
+    const {id} = req.params
+    db.update_user([id, img, name, className]).then(resp => {
+      res.status(200).send()
+    })
+ 
+
   }
 
   // getBracket: (req, res) => {

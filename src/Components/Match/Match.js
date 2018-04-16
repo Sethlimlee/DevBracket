@@ -11,7 +11,7 @@ class Match extends Component {
   }
 
 
-  handleWin(winner, winnerName, loser) {
+  handleWin(winner, winnerName, loser, winnerImg) {
     axios
       .post("/api/button", {
         match: this.props.match.match,
@@ -23,6 +23,7 @@ class Match extends Component {
           winner,
           winnerName,
           loser,
+          winnerImg,
           this.props.match.match,
           this.props.match.bracketid,
           this.props.match.roundid,
@@ -37,8 +38,8 @@ class Match extends Component {
         {this.props.id === this.props.match.player1 ||
         this.props.id === this.props.match.player2 ? (
           <div>
-            <div>
-              Name:{" "}
+            <div className='player'>
+              {<img className='pic' src={this.props.match.player1img} alt="" />}
               {this.props.match.player1name !== "null"
                 ? this.props.match.player1name
                 : " "}{" "}
@@ -51,7 +52,8 @@ class Match extends Component {
                     this.handleWin(
                       this.props.match.player1,
                       this.props.match.player1name,
-                      this.props.match.player2
+                      this.props.match.player2,
+                      this.props.match.player1img
                     );
                   }}
                 >
@@ -63,8 +65,8 @@ class Match extends Component {
               )}
             </div>
             <div>VS.</div>
-            <div>
-              Name:{" "}
+            <div className='player'>
+              {<img className='pic' src={this.props.match.player2img} alt="" />}
               {this.props.match.player2name !== "null"
                 ? this.props.match.player2name
                 : " "}{" "}
@@ -77,7 +79,8 @@ class Match extends Component {
                     this.handleWin(
                       this.props.match.player2,
                       this.props.match.player2name,
-                      this.props.match.player1
+                      this.props.match.player1,
+                      this.props.match.player2img
                     );
                   }}
                 >
@@ -91,15 +94,15 @@ class Match extends Component {
           </div>
         ) : (
           <div>
-            <div>
-              Name:{" "}
+            <div className='player'>
+              {<img className='pic' src={this.props.match.player1img} alt="" />}
               {this.props.match.player1name !== "null"
                 ? this.props.match.player1name
                 : " "}{" "}
             </div>
             <div>VS.</div>
-            <div>
-              Name:{" "}
+            <div className='player'>
+              {<img className='pic' src={this.props.match.player2img} alt="" />}
               {this.props.match.player2name !== "null"
                 ? this.props.match.player2name
                 : " "}{" "}

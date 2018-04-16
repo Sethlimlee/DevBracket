@@ -10,7 +10,7 @@ class FindBracket extends Component {
       bracket: [],
       total: 0
     };
-    this.joinBracket = this.joinBracket.bind(this)
+    this.joinBracket = this.joinBracket.bind(this);
   }
 
   componentDidMount() {
@@ -47,20 +47,22 @@ class FindBracket extends Component {
     let flag = false;
 
     this.state.bracket.map(match => {
-      console.log(flag)
-      console.log(`made it to player 1 map`)
+      console.log(flag);
+      console.log(`made it to player 1 map`);
       if (match.player1 === null && !flag) {
         match.player1 = this.props.user.id;
         match.player1name = this.props.user.name;
+        match.player1img = this.props.user.img
         const newMatch = {
           player1: match.player1,
           player1name: match.player1name,
+          player1img: match.player1img,
           total: this.state.total,
           matchid: match.id
         };
-        console.log('made it to sending stage of player1')
+        console.log("made it to sending stage of player1");
         axios.post("/api/joinbracket", newMatch).then(res => {
-          this.getBracketInfo()
+          this.getBracketInfo();
           // this.setState({
           //   bracket: res.data
           // });
@@ -71,43 +73,76 @@ class FindBracket extends Component {
     });
     if (!flag) {
       this.state.bracket.map(match => {
-        console.log(flag)
-        console.log(`made it to player 2 map`)
-        if (match.player2 === null && !flag){
+        console.log(flag);
+        console.log(`made it to player 2 map`);
+        if (match.player2 === null && !flag) {
           match.player2 = this.props.user.id;
           match.player2name = this.props.user.name;
+          match.player2img = this.props.user.img
           const newMatch = {
             player2: match.player2,
             player2name: match.player2name,
+            player2img: match.player2img,
             total: this.state.total,
             matchid: match.id,
             bracketid: match.bracketid
-          }
-          console.log('made it to sending stage of player1')
+          };
+          console.log("made it to sending stage of player2");
           axios.post("/api/joinbracket2", newMatch).then(res => {
-            this.getBracketInfo()
+            this.getBracketInfo();
             // this.setState({
             //   bracket: res.data
             // });
           });
           flag = true;
         }
-        return
+        return;
       });
     }
   }
 
+  deleteBracket() {
+    axios
+      .delete(`/api/deleteBracket/${this.props.match.params.id}`)
+      .then(res => {
+        this.props.history.push("/home");
+      });
+  }
+
   render() {
+
     let displayPlayer = [];
+    let displayID = []
     const players = this.state.bracket.map(match => {
       if (match.player1 !== null) {
         displayPlayer.push(match.player1name);
+        displayID.push(match.player1);
+        
       }
       if (match.player2 !== null) {
         displayPlayer.push(match.player2name);
+        displayID.push(match.player2);
       }
     });
+    let displayCreator = 0
+    let findCreator = this.state.bracket.map(match => {
+      if (match.creator !== 0 && match.creator !== displayCreator){
+        displayCreator = match.creator
+      }
+    })
 
+    console.log(displayID);
+    
+
+    let sessionID = ''
+    let findID = displayID.map(player => {
+      if(player === this.props.user.id){
+        sessionID = this.props.user.id
+      }
+    })
+    console.log(sessionID)
+
+    console.log(displayCreator);
     let rando = [];
     while (displayPlayer.length > 0) {
       rando.push(
@@ -132,7 +167,12 @@ class FindBracket extends Component {
         </div>
         <div>
           <p />
-          <button onClick={() => this.joinBracket()}>Join Bracket</button>
+          {sessionID === this.props.user.id ? '' : <button onClick={() => this.joinBracket()}>Join Bracket</button>}
+          {displayCreator === this.props.user.id ? (
+            <button onClick={() => this.deleteBracket()}>Delete Bracket</button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );
