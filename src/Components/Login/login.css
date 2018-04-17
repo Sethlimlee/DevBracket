@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,600,700');
+.title {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Montserrat', sans-serif;
+  color: #2AABE2;
+  font-size: 70px;
+ 
+  letter-spacing: 15px;
+  background: radial-gradient(#40404b, #111118) rgba(34,34,40,0.94);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.login:link {
+  padding-top: 30px;
+  letter-spacing: 2px;
+  font-size: 30px;
+  color: white;
+}
+.login:visited {
+  padding-top: 30px;
+  letter-spacing: 2px;
+  font-size: 30px;
+  color: white;
+}
+.login:hover {
+  color: white;
+}

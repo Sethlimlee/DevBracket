@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import './reset.css'
 import './App.css';
 import Nav from "./Components/Nav/Nav";
 import routes from './routes';
+
 class App extends Component {
   render() {
     const authPage = window.location.href

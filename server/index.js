@@ -52,7 +52,7 @@ passport.use(
       db.find_user([profile.id]).then(userResult => {
         if (!userResult[0]) {
           db
-            .create_user([profile.id, profile.displayName])
+            .create_user([profile.id, profile.displayName, profile.picture])
             .then(createdUser => {
               return done(null, createdUser[0].id);
             });
@@ -122,6 +122,7 @@ app.post("/api/button", c.button);
 app.delete("/api/deleteBracket/:bracketid", c.deleteBracket)
 app.put("/api/updateProfile/:id", c.updateUser)
 app.get('/api/userbrackets', c.userBrackets)
+app.put('/api/complete/:bracketid', c.completeBracket)
 
 
 

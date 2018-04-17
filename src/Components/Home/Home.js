@@ -14,7 +14,10 @@ class Home extends Component {
       name: "",
       class: "",
       id: 0,
-      bracketIDs: []
+      bracketIDs: [],
+      enter: false,
+      started: false,
+      complete: false
     };
   }
   componentDidMount() {
@@ -25,6 +28,12 @@ class Home extends Component {
       });
     });
     this.props.getUserInfo();
+  }
+
+  handleToggle(key, value) {
+    this.setState({
+      [key]: value
+    });
   }
 
   handleClick(value) {
@@ -68,6 +77,10 @@ class Home extends Component {
 
   render() {
     console.log(this.state.name);
+    console.log(this.state.enter);
+    console.log(this.state.started);
+    console.log(this.state.complete);
+
     const displayBracketsJoined = this.state.bracketIDs.map(bracket => {
       if (
         bracket.bracketfull === null &&
@@ -88,7 +101,23 @@ class Home extends Component {
       if (
         brackets.bracketfull !== null &&
         (brackets.player1 === this.props.user.id ||
-          brackets.player2 === this.props.user.id)
+          brackets.player2 === this.props.user.id) &&
+        brackets.bracketcomplete !== 1
+      ) {
+        return (
+          <Link key={brackets.bracketid} to={`/bracket/${brackets.bracketid}`}>
+            <div>Bracket: {brackets.bracketid}</div>
+          </Link>
+        );
+      }
+    });
+
+    const displayBracketsComplete = this.state.bracketIDs.map(brackets => {
+      if (
+        brackets.bracketfull !== null &&
+        (brackets.player1 === this.props.user.id ||
+          brackets.player2 === this.props.user.id) &&
+        brackets.bracketcomplete === 1
       ) {
         return (
           <Link key={brackets.bracketid} to={`/bracket/${brackets.bracketid}`}>
@@ -108,17 +137,55 @@ class Home extends Component {
           <h2>ID: {user.id}</h2>
           <h2>Class: {user.class}</h2>
           <button onClick={() => this.handleClick(true)}>Edit Profile</button>
+          <p />
           {/* <div>{this.startMap()}</div> */}
           <div>
-            <div>
-              <h2>Brackets Entered</h2>
-              <h3>{displayBracketsJoined}</h3>
+            <button
+              onClick={() => this.handleToggle("enter", !this.state.enter)}
+            >
+              Brackets Entered
+            </button>
+            {this.state.enter === true ? (
+              <div>
+                <h3>{displayBracketsJoined}</h3>
+              </div>
+            ) : (
+              ""
+            )}
             </div>
+            <p></p>
             <div>
-              <h2>Brackets Ready to Play</h2>
-              <h3>{displayBracketsStarted}</h3>
+            <button
+              onClick={() => this.handleToggle("started", !this.state.started)}
+            >
+              Brackets Ready to Play
+            </button>
+            {this.state.started === true ? (
+              <div>
+                <h3>{displayBracketsStarted}</h3>
+              </div>
+            ) : (
+              ""
+            )}
             </div>
+            <p></p>
+            <div>
+            <button
+              onClick={() =>
+                this.handleToggle("complete", !this.state.complete)
+              }
+            >
+              Brackets Completed
+            </button>
+            {this.state.complete === true ? (
+              <div>
+                <h3>{displayBracketsComplete}</h3>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
+          <p></p>
         </div>
       ) : (
         <div>
@@ -147,7 +214,7 @@ class Home extends Component {
       <p>bruh you need to log in first</p>
     );
 
-    return <div className="text">{userDataJSX}</div>;
+    return <div className="home">{userDataJSX}</div>;
   }
 }
 

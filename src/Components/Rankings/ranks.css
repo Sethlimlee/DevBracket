@@ -8,7 +8,8 @@
   display: flex;
   flex-direction: row;
   width: 30vw;
-  justify-content: space-between
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .button:active {

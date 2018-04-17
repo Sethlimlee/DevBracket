@@ -62,7 +62,7 @@ class FindBracket extends Component {
         };
         console.log("made it to sending stage of player1");
         axios.post("/api/joinbracket", newMatch).then(res => {
-          this.getBracketInfo();
+          this.props.history.push("/home");
           // this.setState({
           //   bracket: res.data
           // });
@@ -89,7 +89,7 @@ class FindBracket extends Component {
           };
           console.log("made it to sending stage of player2");
           axios.post("/api/joinbracket2", newMatch).then(res => {
-            this.getBracketInfo();
+              this.props.history.push("/home");
             // this.setState({
             //   bracket: res.data
             // });

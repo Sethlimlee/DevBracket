@@ -1,28 +1,27 @@
 import React from "react";
-import {Link} from 'react-router-dom';
-import './nav.css'
+import { Link } from "react-router-dom";
+import "./nav.css";
 
 function Nav() {
   return (
     <div className="nav">
-      <div>D E V B R A C K E T</div>
       <div>
-        <Link to="/home">Home</Link>
+        <Link className='home' to="/home">D E V B R A C K E T</Link>
       </div>
       <div>
-        <Link to="/bracketcreator">Bracket Creator</Link>
+        <Link className='navlinks' to="/bracketcreator">Bracket Creator</Link>
       </div>
       <div>
-        <Link to="/joinbrackets">Join a Bracket</Link>
+        <Link className='navlinks' to="/joinbrackets">Join Bracket</Link>
       </div>
       <div>
-        <Link to="/allbrackets">Brackets</Link>
+        <Link className='navlinks' to="/allbrackets">All Brackets</Link>
       </div>
       <div>
-        <Link to="/rankings">Rankings</Link>
+        <Link className='navlinks' to="/rankings">Rankings</Link>
       </div>
       <div>
-      <a href="http://localhost:3005/login/logout">
+        <a href="http://localhost:3005/login/logout">
           <p>Logout</p>
         </a>
       </div>

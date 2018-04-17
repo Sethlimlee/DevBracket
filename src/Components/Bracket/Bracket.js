@@ -5,8 +5,7 @@ import Match from "../Match/Match";
 import Winner from "../Winner/Winner";
 import axios from "axios";
 import "./bracket.css";
-import { SteppedLineTo } from 'react-lineto'
-
+import { SteppedLineTo } from "react-lineto";
 
 class Bracket extends Component {
   constructor() {
@@ -157,6 +156,9 @@ class Bracket extends Component {
     });
 
     let matchesDisplayedRound6 = this.state.bracket.map(match => {
+      if (match.winner === "yes" && (match.player1name != null)) {
+        axios.put(`/api/complete/${match.bracketid}`)
+      }
       if (match.winner === "yes")
         return <Winner key={match.id} match={match} />;
     });
@@ -170,8 +172,14 @@ class Bracket extends Component {
             <div className="column3">{matchesDisplayedRound3}</div>
             <div className="column4">{matchesDisplayedRound4}</div>
             <div className="column5">{matchesDisplayedRound5}</div>
-            <div className="column6">{matchesDisplayedRound6}</div>  
-            <SteppedLineTo from='match.995' within='column' to='match.997' within='column2' orientation="v" />
+            <div className="column6">{matchesDisplayedRound6}</div>
+            <SteppedLineTo
+              from="match.995"
+              within="column"
+              to="match.997"
+              within="column2"
+              orientation="v"
+            />
           </div>
         ) : (
           <p>bruh you need to log in first</p>

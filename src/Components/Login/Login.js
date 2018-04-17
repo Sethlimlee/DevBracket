@@ -1,13 +1,14 @@
 import React from "react";
-
+import './login.css';
 export default function Login() {
   return (
-    <div className='App'>
-    <h1>D E V B R A C K E T</h1>
-    <p> </p>
-      <a href={process.env.REACT_APP_LOGIN}>
-        <button className="">Login</button>
+    <div className='title'>
+    <h1>DEVBRACKET</h1>
+    <div>
+      <a className='login' href={process.env.REACT_APP_LOGIN}>
+        Login
       </a>
+    </div>
     </div>
   );
 }

@@ -288,6 +288,14 @@ module.exports = {
     })
   },
 
+  completeBracket: (req, res) => {
+    const db = req.app.get("db");
+    const {bracketid} = req.params
+    db.complete_bracket([bracketid]).then(response => {
+      res.status(200).send()
+    })
+  }
+
 
   // getBracket: (req, res) => {
   //   const db = req.app.get("db");
