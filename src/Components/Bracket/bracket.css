@@ -18,3 +18,31 @@
   justify-content: space-around;
 }
 
+.column3 {
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.column4 {
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.column5 {
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.column6 {
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./match.css";
 import axios from "axios";
+import { SteppedLineTo } from "react-lineto";
 
 class Match extends Component {
   constructor() {
@@ -34,7 +35,7 @@ class Match extends Component {
 
   render() {
     return (
-      <div className="match">
+      <div className={`${this.props.match.id} match`}>
         {this.props.id === this.props.match.player1 ||
         this.props.id === this.props.match.player2 ? (
           <div>

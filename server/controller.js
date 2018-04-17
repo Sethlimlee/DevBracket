@@ -279,9 +279,15 @@ module.exports = {
     db.update_user([id, img, name, className]).then(resp => {
       res.status(200).send()
     })
- 
+  },
 
-  }
+  userBrackets: (req, res) => {
+    const db = req.app.get("db");
+    db.user_brackets().then(resp =>{
+      res.status(200).send(resp)
+    })
+  },
+
 
   // getBracket: (req, res) => {
   //   const db = req.app.get("db");

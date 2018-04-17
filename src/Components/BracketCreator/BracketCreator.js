@@ -51,7 +51,7 @@ class BracketCreator extends Component {
         sport: this.state.sport
       };
       axios.post("/api/bracketSize2", bracketInfo).then(response => {
-        this.getBracketID();
+        this.props.history.push(`/findbracket/${this.state.bracketid}`)
       });
     }
     if (this.state.bracketSize == 4) {
@@ -66,7 +66,7 @@ class BracketCreator extends Component {
         sport: this.state.sport
       };
       axios.post("/api/bracketSize4", bracketInfo).then(response => {
-        this.getBracketID();
+        this.props.history.push(`/findbracket/${this.state.bracketid}`)
       });
     }
     if (this.state.bracketSize == 8) {
@@ -85,7 +85,7 @@ class BracketCreator extends Component {
         sport: this.state.sport
       };
       axios.post("/api/bracketSize8", bracketInfo).then(response => {
-        this.getBracketID();
+        this.props.history.push(`/findbracket/${this.state.bracketid}`)
       });
     }
     if (this.state.bracketSize == 16) {
@@ -112,7 +112,7 @@ class BracketCreator extends Component {
         sport: this.state.sport
       };
       axios.post("/api/bracketSize16", bracketInfo).then(response => {
-        this.getBracketID();
+        this.props.history.push(`/findbracket/${this.state.bracketid}`)
       });
     }
   }
@@ -145,9 +145,9 @@ class BracketCreator extends Component {
           <div>Sport: {this.state.sport}</div>
           
           <p />
-          <Link to={`/findbracket/${this.state.bracketid}`}>
+        
           <button onClick={() => this.submitBracket()}>Submit</button>
-          </Link>
+          
         </div>
       </div>
     );

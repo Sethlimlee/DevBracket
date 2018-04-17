@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../ducks/users";
+import { Link } from "react-router-dom";
 import "./home.css";
 import axios from "axios";
 
@@ -11,16 +12,19 @@ class Home extends Component {
       toggle: false,
       img: "",
       name: "",
-      class: ""
+      class: "",
+      id: 0,
+      bracketIDs: []
     };
   }
   componentDidMount() {
-    this.props.getUserInfo();
-    this.setState({
-      img: this.props.user.img,
-      name: this.props.user.name,
-      class: this.props.user.class
+    axios.get(`/api/userbrackets`).then(response => {
+      console.log(response.data);
+      this.setState({
+        bracketIDs: response.data
+      });
     });
+    this.props.getUserInfo();
   }
 
   handleClick(value) {
@@ -64,18 +68,57 @@ class Home extends Component {
 
   render() {
     console.log(this.state.name);
+    const displayBracketsJoined = this.state.bracketIDs.map(bracket => {
+      if (
+        bracket.bracketfull === null &&
+        (bracket.player1 === this.props.user.id ||
+          bracket.player2 === this.props.user.id)
+      ) {
+        return (
+          <Link
+            key={bracket.bracketid}
+            to={`/findbracket/${bracket.bracketid}`}
+          >
+            <div>Bracket: {bracket.bracketid}</div>
+          </Link>
+        );
+      }
+    });
+    const displayBracketsStarted = this.state.bracketIDs.map(brackets => {
+      if (
+        brackets.bracketfull !== null &&
+        (brackets.player1 === this.props.user.id ||
+          brackets.player2 === this.props.user.id)
+      ) {
+        return (
+          <Link key={brackets.bracketid} to={`/bracket/${brackets.bracketid}`}>
+            <div>Bracket: {brackets.bracketid}</div>
+          </Link>
+        );
+      }
+    });
 
     const { user } = this.props;
     const userDataJSX = this.props.user.name ? (
       this.state.toggle === false ? (
         <div>
-          <img className='pp' src={user.img} alt="" />
+          <img className="pp" src={user.img} alt="" />
           <h1>{user.name}</h1>
 
           <h2>ID: {user.id}</h2>
           <h2>Class: {user.class}</h2>
           <button onClick={() => this.handleClick(true)}>Edit Profile</button>
           {/* <div>{this.startMap()}</div> */}
+          <div>
+            <div>
+              <h2>Brackets Entered</h2>
+              <h3>{displayBracketsJoined}</h3>
+            </div>
+            <div>
+              <h2>Brackets Ready to Play</h2>
+              <h3>{displayBracketsStarted}</h3>
+            </div>
+          </div>
         </div>
       ) : (
         <div>

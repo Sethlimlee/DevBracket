@@ -46,7 +46,7 @@ class Rankings extends Component {
             <h3>{i + 1}:</h3>
           </div>
           <div>
-            <h3>{player.name}</h3>
+            <h3><img className='pic' src={player.img} alt="" /> {player.name}</h3>
           </div>
           <div>
             <h3>{player.points}</h3>
@@ -61,7 +61,7 @@ class Rankings extends Component {
             <h3>{i + 1}:</h3>
           </div>
           <div>
-            <h3>{player.name}</h3>
+            <h3><img className='pic' src={player.img} alt="" /> {player.name}</h3>
           </div>
           <div>
             <h3>{player.points}</h3>

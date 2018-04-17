@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../ducks/users";
 import Match from "../Match/Match";
-import Winner from '../Winner/Winner';
+import Winner from "../Winner/Winner";
 import axios from "axios";
 import "./bracket.css";
+import { SteppedLineTo } from 'react-lineto'
+
 
 class Bracket extends Component {
   constructor() {
@@ -15,12 +17,12 @@ class Bracket extends Component {
     };
     this.handleWin = this.handleWin.bind(this);
   }
-  
+
   componentDidMount() {
-    this.getBracket()
+    this.getBracket();
   }
 
-  getBracket(){
+  getBracket() {
     axios.get(`/api/bracket/${this.props.match.params.id}`).then(res => {
       console.log(res.data);
       this.setState({
@@ -29,13 +31,28 @@ class Bracket extends Component {
     });
   }
 
-  handleWin(player, playerName, loser, playerImg,  matchid, bracketid, roundid, sport) {
-    
+  handleWin(
+    player,
+    playerName,
+    loser,
+    playerImg,
+    matchid,
+    bracketid,
+    roundid,
+    sport
+  ) {
     const newMatch = Math.ceil(matchid / 2);
     const newRoundID = roundid + 1;
-    axios.post('/api/addWin', {player: player, roundid: roundid, sport: sport, loser: loser}).then(res => {
-      console.log('added win')
-    })
+    axios
+      .post("/api/addWin", {
+        player: player,
+        roundid: roundid,
+        sport: sport,
+        loser: loser
+      })
+      .then(res => {
+        console.log("added win");
+      });
     let player1Check = false;
     let player1MapCheck = this.state.bracket.map(match => {
       if (
@@ -49,69 +66,116 @@ class Bracket extends Component {
     if (player1Check === true) {
       console.log("player1 was found");
       axios
-        .post("/api/addPlayer2", { player, newMatch, bracketid, newRoundID, playerName, playerImg })
+        .post("/api/addPlayer2", {
+          player,
+          newMatch,
+          bracketid,
+          newRoundID,
+          playerName,
+          playerImg
+        })
         .then(res => {
           console.log("back from database");
-          this.getBracket()
+          this.getBracket();
         });
     }
     if (player1Check === false) {
       axios
-        .post("/api/addPlayer1", { player, newMatch, bracketid, newRoundID, playerName, playerImg })
+        .post("/api/addPlayer1", {
+          player,
+          newMatch,
+          bracketid,
+          newRoundID,
+          playerName,
+          playerImg
+        })
         .then(res => {
           console.log("back from database");
-          this.getBracket()
+          this.getBracket();
         });
     }
-    
   }
 
   render() {
-
     let matchesDisplayedRound1 = this.state.bracket.map(match => {
-      if (match.roundid === 1 && match.winner !== 'yes')
+      if (match.roundid === 1 && match.winner !== "yes")
         return (
-          <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>
+          <Match
+            key={match.id}
+            match={match}
+            handleWin={this.handleWin}
+            id={this.props.user.id}
+          />
         );
     });
     let matchesDisplayedRound2 = this.state.bracket.map(match => {
-      if (match.roundid === 2 && match.winner !== 'yes')
+      if (match.roundid === 2 && match.winner !== "yes")
         return (
-          <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>
+          <Match
+            key={match.id}
+            match={match}
+            handleWin={this.handleWin}
+            id={this.props.user.id}
+          />
         );
     });
 
     let matchesDisplayedRound3 = this.state.bracket.map(match => {
-      if (match.roundid === 3 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>;
+      if (match.roundid === 3 && match.winner !== "yes")
+        return (
+          <Match
+            key={match.id}
+            match={match}
+            handleWin={this.handleWin}
+            id={this.props.user.id}
+          />
+        );
     });
 
     let matchesDisplayedRound4 = this.state.bracket.map(match => {
-      if (match.roundid === 4 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>;
+      if (match.roundid === 4 && match.winner !== "yes")
+        return (
+          <Match
+            key={match.id}
+            match={match}
+            handleWin={this.handleWin}
+            id={this.props.user.id}
+          />
+        );
     });
 
     let matchesDisplayedRound5 = this.state.bracket.map(match => {
-      if (match.roundid === 5 && match.winner !== 'yes') return <Match key={match.id} match={match} handleWin={this.handleWin} id = {this.props.user.id}/>;
+      if (match.roundid === 5 && match.winner !== "yes")
+        return (
+          <Match
+            key={match.id}
+            match={match}
+            handleWin={this.handleWin}
+            id={this.props.user.id}
+          />
+        );
     });
-    
+
     let matchesDisplayedRound6 = this.state.bracket.map(match => {
-      if (match.winner === 'yes') return <Winner key={match.id} match={match}/>;
+      if (match.winner === "yes")
+        return <Winner key={match.id} match={match} />;
     });
 
     return (
-      
       <div>
-      {this.props.user.id ? (
-        <div className="bracket">
-        <div className="column">{matchesDisplayedRound1}</div>
-        <div className="column2">{matchesDisplayedRound2}</div>
-        <div className="column">{matchesDisplayedRound3}</div>
-        <div className="column">{matchesDisplayedRound4}</div>
-        <div className="column">{matchesDisplayedRound5}</div>
-        <div className="column">{matchesDisplayedRound6}</div>
-        </div>
-    ) : (
-      <p>bruh you need to log in first</p>
-    )}
+        {this.props.user.id ? (
+          <div className="bracket">
+            <div className="column">{matchesDisplayedRound1}</div>
+            <div className="column2">{matchesDisplayedRound2}</div>
+            <div className="column3">{matchesDisplayedRound3}</div>
+            <div className="column4">{matchesDisplayedRound4}</div>
+            <div className="column5">{matchesDisplayedRound5}</div>
+            <div className="column6">{matchesDisplayedRound6}</div>  
+            <SteppedLineTo from='match.995' within='column' to='match.997' within='column2' orientation="v" />
+          </div>
+        ) : (
+          <p>bruh you need to log in first</p>
+        )}
       </div>
     );
   }
@@ -124,4 +188,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { getUserInfo })(Bracket);
-

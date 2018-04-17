@@ -121,6 +121,9 @@ app.post("/api/joinbracket2", c.joinBracket2);
 app.post("/api/button", c.button);
 app.delete("/api/deleteBracket/:bracketid", c.deleteBracket)
 app.put("/api/updateProfile/:id", c.updateUser)
+app.get('/api/userbrackets', c.userBrackets)
+
+
 
 app.listen(SERVER_PORT, () =>
   console.log(chalk.cyan(`POWER LEVEL OVER ${SERVER_PORT}!!!!!!!`))
