@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./match.css";
 import axios from "axios";
 import { SteppedLineTo } from "react-lineto";
+import swal from 'sweetalert2'
 
 class Match extends Component {
   constructor() {
@@ -10,7 +11,6 @@ class Match extends Component {
       show: true
     };
   }
-
 
   handleWin(winner, winnerName, loser, winnerImg) {
     axios
@@ -39,55 +39,93 @@ class Match extends Component {
         {this.props.id === this.props.match.player1 ||
         this.props.id === this.props.match.player2 ? (
           <div>
-            <div className='player'>
-              {<img className='pic' src={this.props.match.player1img} alt="" />}
+            <div className="player">
+              {<img className="pic" src={this.props.match.player1img} alt="" />}
               {this.props.match.player1name !== "null"
                 ? this.props.match.player1name
                 : " "}{" "}
               {this.props.match.button !== "no" &&
               this.props.match.player1name !== null &&
               this.props.match.player2name !== null ? (
-                <button
+                <p
+                  className="checks"
                   id="button"
-                  onClick={() => {
-                    this.handleWin(
-                      this.props.match.player1,
-                      this.props.match.player1name,
-                      this.props.match.player2,
-                      this.props.match.player1img
-                    );
-                  }}
+                  onClick={() =>
+                    swal({
+                      title: "Are you sure?",
+                      text: "You won't be able to revert this!",
+                      type: "warning",
+                      typeColor: "#2aabe2",
+                      showCancelButton: true,
+                      confirmButtonColor: "#2aabe2",
+                      cancelButtonColor: "#d33",
+                      confirmButtonText: "Yes!"
+                    }).then(result => {
+                      if (result.value) {
+                        this.handleWin(
+                          this.props.match.player1,
+                          this.props.match.player1name,
+                          this.props.match.player2,
+                          this.props.match.player1img
+                        );
+                        swal(
+                          "Done!",
+                          "The Bracket Has Been Updated",
+                          "success"
+                        );
+                      }
+                    })
+                  }
                 >
                   {" "}
-                  Win{" "}
-                </button>
+                  ✔{" "}
+                </p>
               ) : (
                 ""
               )}
             </div>
             <div>VS.</div>
-            <div className='player'>
-              {<img className='pic' src={this.props.match.player2img} alt="" />}
+            <div className="player">
+              {<img className="pic" src={this.props.match.player2img} alt="" />}
               {this.props.match.player2name !== "null"
                 ? this.props.match.player2name
                 : " "}{" "}
               {this.props.match.button !== "no" &&
               this.props.match.player1name !== null &&
               this.props.match.player2name !== null ? (
-                <button
+                <p
+                  className="checks"
                   id="button"
-                  onClick={() => {
-                    this.handleWin(
-                      this.props.match.player2,
-                      this.props.match.player2name,
-                      this.props.match.player1,
-                      this.props.match.player2img
-                    );
-                  }}
+                  onClick={() =>
+                    swal({
+                      title: "Are you sure?",
+                      text: "You won't be able to revert this!",
+                      type: "warning",
+                      typeColor: "#2aabe2",
+                      showCancelButton: true,
+                      confirmButtonColor: "#2aabe2",
+                      cancelButtonColor: "#d33",
+                      confirmButtonText: "Yes!"
+                    }).then(result => {
+                      if (result.value) {
+                        this.handleWin(
+                          this.props.match.player2,
+                          this.props.match.player2name,
+                          this.props.match.player1,
+                          this.props.match.player2img
+                        );
+                        swal(
+                          "Done!",
+                          "The Bracket Has Been Updated",
+                          "success"
+                        );
+                      }
+                    })
+                  }
                 >
                   {" "}
-                  Win{" "}
-                </button>
+                  ✔{" "}
+                </p>
               ) : (
                 ""
               )}
@@ -95,15 +133,15 @@ class Match extends Component {
           </div>
         ) : (
           <div>
-            <div className='player'>
-              {<img className='pic' src={this.props.match.player1img} alt="" />}
+            <div className="player">
+              {<img className="pic" src={this.props.match.player1img} alt="" />}
               {this.props.match.player1name !== "null"
                 ? this.props.match.player1name
                 : " "}{" "}
             </div>
             <div>VS.</div>
-            <div className='player'>
-              {<img className='pic' src={this.props.match.player2img} alt="" />}
+            <div className="player">
+              {<img className="pic" src={this.props.match.player2img} alt="" />}
               {this.props.match.player2name !== "null"
                 ? this.props.match.player2name
                 : " "}{" "}

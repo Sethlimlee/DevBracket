@@ -1,0 +1,11 @@
+.playerwin {
+  min-width: 195px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: right;
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}

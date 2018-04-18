@@ -1,0 +1,53 @@
+.allbrackets {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+ 
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 45px;
+  margin-top: 40px;
+  margin-bottom: 40px
+}
+
+.displayallbrackets{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 20px;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.allbracket:link {
+  text-decoration: none;
+  
+  color: #2AABE2;
+}
+
+.allbracket:visited {
+  text-decoration: none;
+  color: #2AABE2;    
+}
+
+.allbracket:hover {
+  text-decoration: none;
+  color: #2AABE2;
+  cursor: pointer;
+}
+
+.allbracket:active {
+  text-decoration: none;
+  color: white;    
+}
+
+.allbracketstitle {
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.allbracketsshow {
+  margin-top: 5px;
+}

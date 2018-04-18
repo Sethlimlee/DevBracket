@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../ducks/users";
 import axios from "axios";
+import './findBracket.css'
 
 class FindBracket extends Component {
   constructor() {
@@ -153,26 +154,34 @@ class FindBracket extends Component {
       );
     }
     const showPlayers = rando.map((player, i) => {
-      return <div key={i}>{player}</div>;
+      return <div className='showplayers' key={i}>{player}</div>;
     });
     return (
-      <div>
-        <h2>Bracket Size</h2>
-        <div>{this.state.bracket.length * 2}</div>
-        <h2>Current Players in this Bracket</h2>
-        <div>{showPlayers}</div>
+      <div className="outsidebox">
+        <div className="profile">
+          <div className="find">
+          <div>
+        <h2>Bracket Size:</h2>
+        <div className='findinfo'>{this.state.bracket.length * 2}</div>
+          </div>
         <div>
-          <h2>Available Spots Remaining</h2>
-          <div>{this.state.total}</div>
+        <h2>Players in this Bracket:</h2>
+        <div className='findinfo'>{showPlayers}</div>
+        </div>
+        <div>
+          <h2>Available Spots Remaining:</h2>
+          <div className='findinfo'>{this.state.total}</div>
         </div>
         <div>
           <p />
-          {sessionID === this.props.user.id ? '' : <button onClick={() => this.joinBracket()}>Join Bracket</button>}
+          {sessionID === this.props.user.id ? '' : <p className='submitbracket' onClick={() => this.joinBracket()}>Join Bracket</p>}
           {displayCreator === this.props.user.id ? (
-            <button onClick={() => this.deleteBracket()}>Delete Bracket</button>
+            <p className='deletebracket' onClick={() => this.deleteBracket()}>Delete Bracket</p>
           ) : (
             ""
           )}
+        </div>
+          </div>
         </div>
       </div>
     );

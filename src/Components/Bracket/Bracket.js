@@ -7,6 +7,7 @@ import axios from "axios";
 import "./bracket.css";
 import { SteppedLineTo } from "react-lineto";
 
+
 class Bracket extends Component {
   constructor() {
     super();

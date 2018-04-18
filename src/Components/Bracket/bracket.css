@@ -3,6 +3,7 @@
   justify-content: space-evenly;
   align-items: center;
   background-color: lightgray;
+  min-width: 100vw;
 }
 
 .column {

@@ -1,0 +1,37 @@
+.find {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.findinfo {
+  margin-top: 10px
+}
+
+.deletebracket {
+  margin-top: 25px;
+  font-size: 35px;
+  color: red;
+}
+
+
+.deletebracket:hover {
+  text-decoration: none;
+  color: red;
+  cursor: pointer;
+}
+
+.deletebracket:active {
+  text-decoration: none;
+  color: white;    
+}
+
+
+.showplayers {
+  font-size: 20px;
+}

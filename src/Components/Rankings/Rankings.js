@@ -43,13 +43,15 @@ class Rankings extends Component {
       return (
         <div key={player.id} className="row">
           <div>
-            <h3>{i + 1}:</h3>
+            <div className="rankingposition">{i + 1}:</div>
           </div>
           <div>
-            <h3><img className='pic' src={player.img} alt="" /> {player.name}</h3>
+            <div className="picandname">
+              <img className="pic" src={player.img} alt="" /> {player.name}
+            </div>
           </div>
           <div>
-            <h3>{player.points}</h3>
+            <div className="rankingpoints">{player.points}</div>
           </div>
         </div>
       );
@@ -58,34 +60,44 @@ class Rankings extends Component {
       return (
         <div key={player.id} className="row">
           <div>
-            <h3>{i + 1}:</h3>
+            <div className="rankingposition">{i + 1}:</div>
           </div>
           <div>
-            <h3><img className='pic' src={player.img} alt="" /> {player.name}</h3>
+            <div className="picandname">
+              <img className="pic" src={player.img} alt="" /> {player.name}
+            </div>
           </div>
           <div>
-            <h3>{player.points}</h3>
+          <div className="rankingpoints">{player.points}</div>
           </div>
         </div>
       );
     });
     return (
-      <div>
-        {this.state.showPong === true ? (
-          <div>
-            <h1>Pong Rankings</h1>
-            <button onClick={() => this.handlePong()}>Pong</button>
-            <button onClick={() => this.handleFoos()}>Foos</button>
-            <div className="ranks">{rankingDisplayPong}</div>
+      <div className="outsideboxrank">
+        <div className="profilerank">
+          <div className="ranking">
+            {this.state.showPong === true ? (
+              <div>
+                <div className='rankingtitle'>Ping Pong Rankings</div>
+                <div className='choice'>
+                <div className='rankingchoice' onClick={() => this.handlePong()}>Pong</div>
+                <div className='rankingchoice' onClick={() => this.handleFoos()}>Foos</div>
+                </div>
+                <div className="ranks">{rankingDisplayPong}</div>
+              </div>
+            ) : (
+              <div>
+                 <div className='rankingtitle'>Foosball Rankings</div>
+                 <div className='choice'>
+                <div className='rankingchoice' onClick={() => this.handlePong()}>Pong</div>
+                <div className='rankingchoice' onClick={() => this.handleFoos()}>Foos</div>
+                </div>
+                <div className="ranks">{rankingDisplayFoos}</div>
+              </div>
+            )}
           </div>
-        ) : (
-          <div>
-            <h1>Foos Rankings</h1>
-            <button onClick={() => this.handlePong()}>Pong</button>
-            <button onClick={() => this.handleFoos()}>Foos</button>
-            <div className="ranks">{rankingDisplayFoos}</div>
-          </div>
-        )}
+        </div>
       </div>
     );
   }

@@ -1,17 +1,101 @@
-.ranks{
+.ranks {
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
+  margin-top: 30px;
 }
 
 .row {
+  position: relative;
   display: flex;
+  -ms-flex-direction: row;
   flex-direction: row;
-  width: 30vw;
-  justify-content: space-between;
-  align-items: baseline;
+  width: 80%;
+  -ms-flex-pack: justify;
+  justify-content: end;
+  align-items: center;
+  margin-top: 30px;
 }
 
 .button:active {
-  display: none
+  display: none;
+}
+
+.outsideboxrank {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5vh;
+}
+
+.profilerank {
+  min-height: 550px;
+  width: 550px;
+  background-color: #edeef0;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  padding-bottom: 20px;
+  margin-top: 38px;
+}
+
+.ranking {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.picandname {
+  display: flex;
+  align-items: center;
+  padding-left: 75px;
+}
+
+.rankingpoints {
+  
+  position: absolute;
+  right: 0px;
+  bottom: 5px;
+}
+
+.rankingposition {
+  
+  position: absolute;
+  left: 0px;
+  bottom: 5px;
+}
+
+.rankingtitle {
+  font-size: 40px;
+  margin-top: 20px;
+}
+
+.rankingchoice {
+  margin-top: 25px;
+  font-size: 25px;
+  color: #2aabe2;
+}
+
+.rankingchoice:hover {
+  text-decoration: none;
+  color: #2aabe2;
+  cursor: pointer;
+}
+.rankingchoice:active {
+  text-decoration: none;
+  color: white;
+}
+
+.choice {
+  display: flex;
+  justify-content: space-evenly;
 }

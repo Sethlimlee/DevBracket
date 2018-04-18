@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import './allBrackets.css'
 
 class AllBrackets extends Component {
   constructor() {
@@ -22,13 +23,22 @@ class AllBrackets extends Component {
     const displayBrackets = this.state.bracketIDs.map(bracket => {
       if (bracket.bracketfull === "full") {
         return (
-          <Link key={bracket.bracketid} to={`/bracket/${bracket.bracketid}`}>
-            <div>{bracket.bracketid}</div>
+          <Link className='allbracket' key={bracket.bracketid} to={`/bracket/${bracket.bracketid}`}>
+            <div className='allbracketsshow'>Bracket {bracket.bracketid}</div>
           </Link>
         );
       }
     });
-    return <div>{displayBrackets}</div>;
+    return (
+      <div className='outsidebox'>
+        <div className='profile'>
+          <div className='allbrackets'>
+            <div className = 'allbracketstitle'>Brackets:</div>
+            <div className='displayallbrackets'>{displayBrackets}</div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 export default AllBrackets;
