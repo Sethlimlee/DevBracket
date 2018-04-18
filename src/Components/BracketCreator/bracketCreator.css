@@ -1,0 +1,64 @@
+.creator {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.bracketnumber {
+  font-size: 45px;
+}
+
+.details{
+  margin-top: 15px;
+}
+
+.submitbracket {
+  margin-top: 25px;
+  font-size: 35px;
+  color: #2aabe2;
+}
+
+.submitbracket:hover {
+  text-decoration: none;
+  color: #2aabe2;
+  cursor: pointer;
+}
+.submitbracket:active {
+  text-decoration: none;
+  color: white;
+}
+
+.players {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sports{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+
+.playerschoice:visited {
+  text-decoration: none;
+  color: white;    
+}
+
+.playerschoice:hover {
+  text-decoration: none;
+  color: #2AABE2;
+  cursor: pointer;
+}
+
+.playerschoice:active {
+  text-decoration: none;
+  color: #2AABE2;    
+}

@@ -1,0 +1,50 @@
+.join {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 45px;
+}
+
+.bracketlinks:link {
+  text-decoration: none;
+  
+  color: #2AABE2;
+}
+
+.bracketlinks:visited {
+  text-decoration: none;
+  color: #2AABE2;    
+}
+
+.bracketlinks:hover {
+  text-decoration: none;
+  color: #2AABE2;
+  cursor: pointer;
+}
+
+.bracketlinks:active {
+  text-decoration: none;
+  color: white;    
+}
+
+.pending {
+  margin-bottom: 40px;
+  margin-top: 60px;
+}
+
+.pendingbrackets {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.pendingbracket {
+  margin-bottom: 10px;
+}

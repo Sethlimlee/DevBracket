@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getUserInfo } from "../../ducks/users";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./bracketCreator.css";
 
 class BracketCreator extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class BracketCreator extends Component {
       player: null,
       bracketSize: 2,
       bracketid: 0,
-      sport: 'Pong'
+      sport: "Pong"
     };
   }
 
@@ -37,7 +38,7 @@ class BracketCreator extends Component {
   handleSport(value) {
     this.setState({
       sport: value
-    })
+    });
   }
 
   submitBracket() {
@@ -51,7 +52,7 @@ class BracketCreator extends Component {
         sport: this.state.sport
       };
       axios.post("/api/bracketSize2", bracketInfo).then(response => {
-        this.props.history.push(`/findbracket/${this.state.bracketid}`)
+        this.props.history.push(`/findbracket/${this.state.bracketid}`);
       });
     }
     if (this.state.bracketSize == 4) {
@@ -66,7 +67,7 @@ class BracketCreator extends Component {
         sport: this.state.sport
       };
       axios.post("/api/bracketSize4", bracketInfo).then(response => {
-        this.props.history.push(`/findbracket/${this.state.bracketid}`)
+        this.props.history.push(`/findbracket/${this.state.bracketid}`);
       });
     }
     if (this.state.bracketSize == 8) {
@@ -85,7 +86,7 @@ class BracketCreator extends Component {
         sport: this.state.sport
       };
       axios.post("/api/bracketSize8", bracketInfo).then(response => {
-        this.props.history.push(`/findbracket/${this.state.bracketid}`)
+        this.props.history.push(`/findbracket/${this.state.bracketid}`);
       });
     }
     if (this.state.bracketSize == 16) {
@@ -112,42 +113,42 @@ class BracketCreator extends Component {
         sport: this.state.sport
       };
       axios.post("/api/bracketSize16", bracketInfo).then(response => {
-        this.props.history.push(`/findbracket/${this.state.bracketid}`)
+        this.props.history.push(`/findbracket/${this.state.bracketid}`);
       });
     }
   }
 
   render() {
     console.log(this.state.bracketid);
-    console.log(this.props.user.img)
+    console.log(this.props.user.img);
 
     return (
-      <div>
-        <div>
-          <h1>BRACKET #{this.state.bracketid}</h1>
-        </div>
-        <div>
-          # of Players:{" "}
-          <button onClick={e => this.handleBracketSize(2)}>2</button>
-          <button onClick={e => this.handleBracketSize(4)}>4</button>
-          <button onClick={e => this.handleBracketSize(8)}>8</button>
-          <button onClick={e => this.handleBracketSize(16)}>16</button>
-          <p />
-        </div>
-        <div>
-        Sport:{" "}
-        <button onClick={e => this.handleSport('Pong')}>Ping Pong</button>
-          <button onClick={e => this.handleSport('Foos')}>Foosball</button>
-        <p />
-        </div>
-        <div>
-          <div>Bracket Size: {this.state.bracketSize}</div>
-          <div>Sport: {this.state.sport}</div>
-          
-          <p />
-        
-          <button onClick={() => this.submitBracket()}>Submit</button>
-          
+      <div className="outsidebox">
+        <div className="profile">
+          <div className="creator">
+            <div className='bracketnumber'>
+              Bracket #{this.state.bracketid}
+            </div>
+            <div className='players'>
+              # of Players:{" "}
+              <p className='playerschoice' onClick={e => this.handleBracketSize(2)}>2</p>
+              <p className='playerschoice' onClick={e => this.handleBracketSize(4)}>4</p>
+              <p className='playerschoice' onClick={e => this.handleBracketSize(8)}>8</p>
+              <p className='playerschoice' onClick={e => this.handleBracketSize(16)}>16</p>
+            
+            </div>
+            <div className='sports'>
+              Sport:{" "}
+              <p className='playerschoice' onClick={e => this.handleSport("Pong")}>Ping Pong</p>
+              <p className='playerschoice' onClick={e => this.handleSport("Foos")}>Foosball</p>
+           
+            </div>
+            <div>
+              <div className='details'>Bracket Size: {this.state.bracketSize}</div>
+              <div className='details'>Sport: {this.state.sport}</div>
+              <p className='submitbracket' onClick={() => this.submitBracket()}>Submit</p>
+            </div>
+          </div>
         </div>
       </div>
     );

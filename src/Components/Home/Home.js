@@ -198,30 +198,30 @@ class Home extends Component {
           </div>
         </div>
       ) : (
-        <div>
+        <div className='updates'>
           <h2>Profile Pic:</h2>{" "}
-          <input
+          <input className='editinputs'
             onChange={e => this.handleInput("img", e.target.value)}
             placeholder={user.img}
           />
           <h2>Name:</h2>{" "}
-          <input
+          <input className='editinputs'
             onChange={e => this.handleInput("name", e.target.value)}
             placeholder={user.name}
           />
           <h2>Class: </h2>{" "}
-          <input
+          <input className='editinputs'
             onChange={e => this.handleInput("class", e.target.value)}
             placeholder={user.class}
           />
-          <div>
-            <button onClick={() => this.handleUpdate(false)}>Submit</button>
-            <button onClick={() => this.handleClick(false)}>Cancel</button>
+          <div className='editbuttons'>
+            <p className='updateprofile' onClick={() => this.handleUpdate(false)}>Submit</p>
+            <p className='updateprofile' onClick={() => this.handleClick(false)}>Cancel</p>
           </div>
         </div>
       )
     ) : (
-      <p>bruh you need to log in first</p>
+      ''
     );
 
     return (

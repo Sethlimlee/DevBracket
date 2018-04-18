@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./joinBracket.css";
 
 class JoinBracket extends Component {
   constructor() {
@@ -22,13 +23,26 @@ class JoinBracket extends Component {
     const displayBrackets = this.state.bracketIDs.map(bracket => {
       if (bracket.bracketfull === null) {
         return (
-          <Link key={bracket.bracketid} to={`/findbracket/${bracket.bracketid}`}>
-            <div>{bracket.bracketid}</div>
+          <Link
+          className='bracketlinks'
+            key={bracket.bracketid}
+            to={`/findbracket/${bracket.bracketid}`}
+          >
+            <div className='pendingbracket'>Bracket: {bracket.bracketid}</div>
           </Link>
         );
       }
     });
-    return <div>{displayBrackets}</div>;
+    return (
+      <div className="outsidebox">
+        <div className="profile">
+          <div className="join">
+            <div className='pending'>Pending Brackets:</div>
+            <div className='pendingbrackets'>{displayBrackets}</div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 export default JoinBracket;
