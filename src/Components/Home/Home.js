@@ -105,8 +105,8 @@ class Home extends Component {
         brackets.bracketcomplete !== 1
       ) {
         return (
-          <Link key={brackets.bracketid} to={`/bracket/${brackets.bracketid}`}>
-            <div>Bracket: {brackets.bracketid}</div>
+          <Link className='bracketLinks' key={brackets.bracketid} to={`/bracket/${brackets.bracketid}`}>
+            <div className='bracketStarted'>Bracket: {brackets.bracketid}</div>
           </Link>
         );
       }
@@ -130,62 +130,72 @@ class Home extends Component {
     const { user } = this.props;
     const userDataJSX = this.props.user.name ? (
       this.state.toggle === false ? (
-        <div>
-          <img className="pp" src={user.img} alt="" />
-          <h1>{user.name}</h1>
-
-          <h2>ID: {user.id}</h2>
-          <h2>Class: {user.class}</h2>
-          <button onClick={() => this.handleClick(true)}>Edit Profile</button>
-          <p />
-          {/* <div>{this.startMap()}</div> */}
-          <div>
-            <button
-              onClick={() => this.handleToggle("enter", !this.state.enter)}
-            >
-              Brackets Entered
-            </button>
-            {this.state.enter === true ? (
-              <div>
-                <h3>{displayBracketsJoined}</h3>
-              </div>
-            ) : (
-              ""
-            )}
-            </div>
-            <p></p>
+        <div className="info">
+          <div className="name">
             <div>
-            <button
-              onClick={() => this.handleToggle("started", !this.state.started)}
-            >
-              Brackets Ready to Play
-            </button>
-            {this.state.started === true ? (
-              <div>
-                <h3>{displayBracketsStarted}</h3>
-              </div>
-            ) : (
-              ""
-            )}
+              <h1>{user.name}</h1>
             </div>
-            <p></p>
             <div>
-            <button
-              onClick={() =>
-                this.handleToggle("complete", !this.state.complete)
-              }
-            >
-              Brackets Completed
-            </button>
-            {this.state.complete === true ? (
-              <div>
-                <h3>{displayBracketsComplete}</h3>
-              </div>
-            ) : (
-              ""
-            )}
+              <img className="pp" src={user.img} alt="" />
+            </div>
           </div>
-          <p></p>
+          <div className="therest">
+            <div className="edit">
+              <div>
+                <h2>Class: {user.class}</h2>
+              </div>
+              <div>
+                <p
+                  className="editprofile"
+                  onClick={() => this.handleClick(true)}
+                >
+                  Edit Profile
+                </p>
+              </div>
+            </div>
+
+            {/* <div>
+              <button
+                onClick={() => this.handleToggle("enter", !this.state.enter)}
+              >
+                Brackets Entered
+              </button>
+              {this.state.enter === true ? (
+                <div>
+                  <h3>{displayBracketsJoined}</h3>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+            <p /> */}
+            <div>
+              Teams:
+            </div>
+            <div>
+              <div className='ready'>Brackets:</div>
+              <div className='brackets'>
+              {displayBracketsStarted}
+              </div>
+            </div>
+
+            {/* <div>
+              <button
+                onClick={() =>
+                  this.handleToggle("complete", !this.state.complete)
+                }
+              >
+                Brackets Completed
+              </button>
+              {this.state.complete === true ? (
+                <div>
+                  <h3>{displayBracketsComplete}</h3>
+                </div>
+              ) : (
+                ""
+              )}
+            </div> */}
+          </div>
         </div>
       ) : (
         <div>
@@ -214,7 +224,11 @@ class Home extends Component {
       <p>bruh you need to log in first</p>
     );
 
-    return <div className="home">{userDataJSX}</div>;
+    return (
+      <div className="outsidebox">
+        <div className="profile">{userDataJSX}</div>
+      </div>
+    );
   }
 }
 

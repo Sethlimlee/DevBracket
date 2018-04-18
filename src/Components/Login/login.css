@@ -17,17 +17,20 @@
 
 
 .login:link {
-  padding-top: 30px;
+  text-decoration: none;
   letter-spacing: 2px;
   font-size: 30px;
   color: white;
 }
 .login:visited {
-  padding-top: 30px;
+  text-decoration: none;
   letter-spacing: 2px;
   font-size: 30px;
   color: white;
 }
 .login:hover {
+  text-decoration: none;
   color: white;
+  text-shadow: 0px 0px 4px white;
 }
+

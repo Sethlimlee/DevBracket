@@ -21,7 +21,7 @@ function Nav() {
         <Link className='navlinks' to="/rankings">Rankings</Link>
       </div>
       <div>
-        <a href="http://localhost:3005/login/logout">
+        <a className='logout' href="http://localhost:3005/login/logout">
           <p>Logout</p>
         </a>
       </div>

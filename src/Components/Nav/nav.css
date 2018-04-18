@@ -14,58 +14,73 @@
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
-a:link {
-  text-decoration: none;
-  color: white;
-}
-
-a:visited {
-  text-decoration: none;
-  color: white;    
-}
-
-a:hover {
-  text-decoration: none;
-  color: #2AABE2;
-  cursor: pointer;
-}
-
-a:active {
-  text-decoration: none;
-  color: white;    
-}
-
 .nav {
   letter-spacing: 1px
+  
 }
 
-navlink:link {
+.navlinks:link {
   text-decoration: none;
+  
   color: white;
 }
 
-navlink:visited {
+.navlinks:visited {
   text-decoration: none;
   color: white;    
 }
 
-navlink:hover {
+.navlinks:hover {
   text-decoration: none;
   color: #2AABE2;
   cursor: pointer;
 }
 
-navlink:active {
+.navlinks:active {
   text-decoration: none;
-  color: white;    
-}
-.home{
-  font-size: 20px;
-}
-.home:visited {
-  color: #2AABE2
+  color: #2AABE2;    
 }
 
 .home:link {
-  color: #2AABE2
+  text-decoration: none;
+  
+  color: #2AABE2;
+}
+
+.home:visited {
+  text-decoration: none;
+  color: #2AABE2;    
+}
+
+.home:hover {
+  text-decoration: none;
+  color: #2AABE2;
+  cursor: pointer;
+}
+
+.home:active {
+  text-decoration: none;
+  color: #2AABE2;    
+}
+
+.logout:link {
+  text-decoration: none;
+  
+  color: white;
+}
+
+.logout:visited {
+  text-decoration: none;
+  color: white;    
+}
+
+.logout:hover {
+  text-decoration: none;
+  color: #2AABE2;
+  cursor: pointer;
+}
+
+.logout:active {
+  text-decoration: none;
+  color: #2AABE2;    
 }

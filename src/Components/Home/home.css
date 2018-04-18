@@ -1,10 +1,125 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,600,700");
 .pp {
   height: 100px;
   width: 100px;
-  padding-top: 20px;
-} 
+  margin-left: 20px;
+  margin-right: 20px;
+}
 
-.home {
+.outsidebox {
+  position: fixed;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5vh;
+}
+
+.profile {
+  height: 550px;
+  width: 550px;
+  background-color: #edeef0;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 45px;
+  padding-left: 32px;
+  padding-right: 12px;
+}
+
+.therest {
+  padding-top: 20px;
+  padding-left: 32px;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 32px;
+}
+
+.edit {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-right: 32px;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.editprofile {
+  font-size: 15px;
+  color: #2aabe2;
+}
+
+.editprofile:hover {
+  text-decoration: none;
+  color: #2aabe2;
+  cursor: pointer;
+}
+.editprofile:active {
+  text-decoration: none;
+  color: white;
+}
+
+.brackets {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 22px
+}
+.ready {
+  padding-bottom: 20px;
+}
+
+.bracketStarted {
+  margin-right: 23px;
+  margin-bottom: 2px;
+}
+
+.bracketLinks:link {
+  text-decoration: none;
+  
+  color: black;
+}
+
+.bracketLinks:visited {
+  text-decoration: none;
+  color: black;    
+}
+
+.bracketLinks:hover {
+  text-decoration: none;
+  color: #2AABE2;
+  cursor: pointer;
+}
+
+.bracketLinks:active {
+  text-decoration: none;
+  color: #2AABE2;    
 }
