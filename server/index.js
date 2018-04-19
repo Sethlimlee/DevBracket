@@ -20,6 +20,9 @@ const {
 
 const app = express();
 
+app.use( express.static( `${__dirname}/../build` ) );
+
+
 app.use(bodyParser.json());
 
 massive(CONNECTION_STRING).then(db => {
@@ -83,8 +86,8 @@ app.get("/login", passport.authenticate("auth0"));
 app.get(
   "/login/callback",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/home",
-    failureRedirect: "http://localhost:3000"
+    successRedirect: process.env.SUCCESS_REDIRECT,
+    failureRedirect: process.env.FAILURE_REDIRECT
   })
 );
 
@@ -100,7 +103,7 @@ app.get("/api/team/:team_name", c.getTeam);
 
 app.get("/login/logout", (req, res) => {
   req.logOut();
-  res.redirect("http://localhost:3000/");
+  res.redirect(process.env.REDIRECT);
 });
 
 app.get("/api/bracket/:bracketid", c.getBracket);

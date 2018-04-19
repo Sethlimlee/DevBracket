@@ -45,7 +45,7 @@ class Nav extends Component {
             </Link>
           </div>
           <div>
-            <a onClick={() => this.myFunction()} className="logoutmobile" href="http://localhost:3005/login/logout">
+            <a onClick={() => this.myFunction()} className="logoutmobile" href={process.env.REACT_APP_LOGOUT}>
               <p>Logout</p>
             </a>
           </div>
@@ -80,7 +80,7 @@ class Nav extends Component {
             </Link>
           </div>
           <div>
-            <a className="logout" href="http://localhost:3005/login/logout">
+            <a className="logout" href={process.env.REACT_APP_LOGOUT}>
               <p>Logout</p>
             </a>
           </div>
