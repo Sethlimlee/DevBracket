@@ -34,7 +34,7 @@ class AllBrackets extends Component {
     : 'log in first'
     return (
       <div className='outsidebox'>
-        <div className='profileFind'>
+        <div className='profile'>
           <div className='allbrackets'>
             <div className = 'allbracketstitle'>Brackets:</div>
             <div className='displayallbrackets'>{displayBrackets}</div>
