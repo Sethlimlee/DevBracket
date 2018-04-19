@@ -22,7 +22,9 @@
 }
 
 .outsideboxrank {
+  position: relative;
   width: 100vw;
+  z-index: -2;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -31,6 +33,7 @@
 }
 
 .profilerank {
+  margin-top: 110px;
   min-height: 550px;
   width: 550px;
   background-color: #edeef0;
