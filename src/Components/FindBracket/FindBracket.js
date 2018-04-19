@@ -169,7 +169,7 @@ class FindBracket extends Component {
 
     return (
       <div className="outsidebox">
-        <div className="profile">
+        <div className="profileFind">
           <div className="find">
           <div>
         <h2>Bracket Size:</h2>

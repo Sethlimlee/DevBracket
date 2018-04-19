@@ -19,6 +19,7 @@ class JoinBracket extends Component {
         bracketIDs: response.data
       });
     });
+    
   }
 
   render() {
