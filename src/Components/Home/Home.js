@@ -221,15 +221,17 @@ class Home extends Component {
         </div>
       )
     ) : (
-      ''
+      'log in first'
     );
 
     return (
       <div className="outsidebox">
+      
         <div className="profile">{userDataJSX}</div>
       </div>
     );
   }
+
 }
 
 function mapStateToProps(state) {

@@ -122,34 +122,51 @@ class BracketCreator extends Component {
     console.log(this.state.bracketid);
     console.log(this.props.user.img);
 
+    const bracketCreator = this.props.user.id ? (
+      <div className="creator">
+        <div className="bracketnumber">Bracket #{this.state.bracketid}</div>
+        <div className="players">
+          # of Players:{" "}
+          <p className="playerschoice" onClick={e => this.handleBracketSize(2)}>
+            2
+          </p>
+          <p className="playerschoice" onClick={e => this.handleBracketSize(4)}>
+            4
+          </p>
+          <p className="playerschoice" onClick={e => this.handleBracketSize(8)}>
+            8
+          </p>
+          <p
+            className="playerschoice"
+            onClick={e => this.handleBracketSize(16)}
+          >
+            16
+          </p>
+        </div>
+        <div className="sports">
+          Sport:{" "}
+          <p className="playerschoice" onClick={e => this.handleSport("Pong")}>
+            Ping Pong
+          </p>
+          <p className="playerschoice" onClick={e => this.handleSport("Foos")}>
+            Foosball
+          </p>
+        </div>
+        <div>
+          <div className="details">Bracket Size: {this.state.bracketSize}</div>
+          <div className="details">Sport: {this.state.sport}</div>
+          <p className="submitbracket" onClick={() => this.submitBracket()}>
+            Submit
+          </p>
+        </div>
+      </div>
+    ) : (
+      "log in first"
+    );
+
     return (
       <div className="outsidebox">
-        <div className="profile">
-          <div className="creator">
-            <div className='bracketnumber'>
-              Bracket #{this.state.bracketid}
-            </div>
-            <div className='players'>
-              # of Players:{" "}
-              <p className='playerschoice' onClick={e => this.handleBracketSize(2)}>2</p>
-              <p className='playerschoice' onClick={e => this.handleBracketSize(4)}>4</p>
-              <p className='playerschoice' onClick={e => this.handleBracketSize(8)}>8</p>
-              <p className='playerschoice' onClick={e => this.handleBracketSize(16)}>16</p>
-            
-            </div>
-            <div className='sports'>
-              Sport:{" "}
-              <p className='playerschoice' onClick={e => this.handleSport("Pong")}>Ping Pong</p>
-              <p className='playerschoice' onClick={e => this.handleSport("Foos")}>Foosball</p>
-           
-            </div>
-            <div>
-              <div className='details'>Bracket Size: {this.state.bracketSize}</div>
-              <div className='details'>Sport: {this.state.sport}</div>
-              <p className='submitbracket' onClick={() => this.submitBracket()}>Submit</p>
-            </div>
-          </div>
-        </div>
+        <div className="profile">{bracketCreator}</div>
       </div>
     );
   }

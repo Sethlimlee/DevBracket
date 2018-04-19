@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./joinBracket.css";
+import { connect } from "react-redux";
+import { getUserInfo } from "../../ducks/users";
 
 class JoinBracket extends Component {
   constructor() {
@@ -20,29 +22,39 @@ class JoinBracket extends Component {
   }
 
   render() {
-    const displayBrackets = this.state.bracketIDs.map(bracket => {
-      if (bracket.bracketfull === null) {
-        return (
-          <Link
-          className='bracketlinks'
-            key={bracket.bracketid}
-            to={`/findbracket/${bracket.bracketid}`}
-          >
-            <div className='pendingbracket'>Bracket: {bracket.bracketid}</div>
-          </Link>
-        );
-      }
-    });
+    const displayBrackets = this.props.user.id
+      ? this.state.bracketIDs.map(bracket => {
+          if (bracket.bracketfull === null) {
+            return (
+              <Link
+                className="bracketlinks"
+                key={bracket.bracketid}
+                to={`/findbracket/${bracket.bracketid}`}
+              >
+                <div className="pendingbracket">
+                  Bracket: {bracket.bracketid}
+                </div>
+              </Link>
+            );
+          }
+        })
+      : " log in first";
     return (
       <div className="outsidebox">
         <div className="profile">
           <div className="join">
-            <div className='pending'>Pending Brackets:</div>
-            <div className='pendingbrackets'>{displayBrackets}</div>
+            <div className="pending">Pending Brackets:</div>
+            <div className="pendingbrackets">{displayBrackets}</div>
           </div>
         </div>
       </div>
     );
   }
 }
-export default JoinBracket;
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+export default connect(mapStateToProps, { getUserInfo })(JoinBracket);

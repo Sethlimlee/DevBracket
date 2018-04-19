@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import './allBrackets.css'
+import { connect } from "react-redux";
+import { getUserInfo } from "../../ducks/users";
 
 class AllBrackets extends Component {
   constructor() {
@@ -20,7 +22,7 @@ class AllBrackets extends Component {
   }
 
   render() {
-    const displayBrackets = this.state.bracketIDs.map(bracket => {
+    const displayBrackets = this.props.user.id ? this.state.bracketIDs.map(bracket => {
       if (bracket.bracketfull === "full") {
         return (
           <Link className='allbracket' key={bracket.bracketid} to={`/bracket/${bracket.bracketid}`}>
@@ -28,7 +30,8 @@ class AllBrackets extends Component {
           </Link>
         );
       }
-    });
+    })
+    : 'log in first'
     return (
       <div className='outsidebox'>
         <div className='profile'>
@@ -41,4 +44,11 @@ class AllBrackets extends Component {
     );
   }
 }
-export default AllBrackets;
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+export default connect(mapStateToProps, { getUserInfo })( AllBrackets);
+

@@ -181,9 +181,10 @@ class Bracket extends Component {
               within="column2"
               orientation="v"
             />
+
           </div>
         ) : (
-          <p>bruh you need to log in first</p>
+          <div className='loginfirst'>log in first</div>
         )}
       </div>
     );

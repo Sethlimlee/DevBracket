@@ -156,6 +156,17 @@ class FindBracket extends Component {
     const showPlayers = rando.map((player, i) => {
       return <div className='showplayers' key={i}>{player}</div>;
     });
+
+    const joinButton = this.props.user.id 
+    ? <div><p />
+    {sessionID === this.props.user.id ? '' : <p className='submitbracket' onClick={() => this.joinBracket()}>Join Bracket</p>}
+    {displayCreator === this.props.user.id ? (
+      <p className='deletebracket' onClick={() => this.deleteBracket()}>Delete Bracket</p>
+    ) : (
+      ""
+    )}</div>
+    : 'log in first'
+
     return (
       <div className="outsidebox">
         <div className="profile">
@@ -173,13 +184,7 @@ class FindBracket extends Component {
           <div className='findinfo'>{this.state.total}</div>
         </div>
         <div>
-          <p />
-          {sessionID === this.props.user.id ? '' : <p className='submitbracket' onClick={() => this.joinBracket()}>Join Bracket</p>}
-          {displayCreator === this.props.user.id ? (
-            <p className='deletebracket' onClick={() => this.deleteBracket()}>Delete Bracket</p>
-          ) : (
-            ""
-          )}
+          {joinButton}
         </div>
           </div>
         </div>
