@@ -64,7 +64,6 @@
   display: flex;
   flex-direction: column;
  
-  padding-bottom: 32px;
 }
 
 
@@ -73,6 +72,7 @@
   width: 100%;
   justify-content: space-between;
   padding-right: 32px;
+  padding-bottom: 30px;
   align-items: center;
   
   font-size: 25px;
@@ -103,7 +103,7 @@
 }
 .ready {
   padding-bottom: 20px;
-  padding-top: 120px;
+  padding-top: 50px
 }
 
 .bracketStarted {

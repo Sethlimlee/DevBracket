@@ -34,8 +34,7 @@
 }
 
 .profilerank {
-
-  min-height: 550px;
+  min-height: 505px;
   width: 550px;
   background-color: #edeef0;
   display: flex;
@@ -44,7 +43,6 @@
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   padding-bottom: 20px;
-
 }
 
 .ranking {
@@ -65,14 +63,12 @@
 }
 
 .rankingpoints {
-  
   position: absolute;
   right: 0px;
   bottom: 5px;
 }
 
 .rankingposition {
-  
   position: absolute;
   left: 0px;
   bottom: 5px;
@@ -102,4 +98,31 @@
 .choice {
   display: flex;
   justify-content: space-evenly;
+}
+
+.rankinglinks {
+  align-items: center;
+  display: flex;
+}
+
+.rankinglinks:link {
+  text-decoration: none;
+
+  color: black;
+}
+
+.rankinglinks:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.rankinglinks:hover {
+  text-decoration: none;
+  color: #2aabe2;
+  cursor: pointer;
+}
+
+.rankinglinks:active {
+  text-decoration: none;
+  color: #2aabe2;
 }

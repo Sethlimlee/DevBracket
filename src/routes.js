@@ -9,6 +9,7 @@ import AllBrackets from './Components/AllBrackets/AllBrackets'
 import Rankings from './Components/Rankings/Rankings';
 import JoinBracket from './Components/JoinBracket/JoinBracket';
 import FindBracket from './Components/FindBracket/FindBracket';
+import Profile from './Components/Profile/Profile';
 
 
 
@@ -23,6 +24,7 @@ export default (
     <Route path = '/allbrackets' component={AllBrackets}/>  
     <Route path = '/joinbrackets' component={JoinBracket}/>
     <Route path = '/rankings' component={Rankings}/>
+    <Route path = '/profile/:id' component={Profile}/> 
   </Switch>
 )
 

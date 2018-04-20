@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../ducks/users";
 import { Link } from "react-router-dom";
-import "./home.css";
 import axios from "axios";
 
-class Home extends Component {
+class Profile extends Component {
   constructor() {
     super();
     this.state = {
@@ -22,6 +21,7 @@ class Home extends Component {
     };
   }
   componentDidMount() {
+    this.findPlayer()
     axios.get(`/api/userbrackets`).then(response => {
       console.log(response.data);
       this.setState({
@@ -29,6 +29,21 @@ class Home extends Component {
       });
     });
     this.props.getUserInfo();
+  
+  }
+
+  findPlayer(){
+    axios.get(`/api/profile/${this.props.match.params.id}`).then(res => {
+      console.log(res.data)
+      this.setState({
+        img: res.data.img,
+        name: res.data.name,
+        class: res.data.class,
+        slack: res.data.slack,
+        id: res.data.id,
+      })
+    })
+
   }
 
   handleToggle(key, value) {
@@ -68,27 +83,14 @@ class Home extends Component {
         });
       });
   }
-  // startMap() {
-  //   return this.props.user.team_name.map(team => {
-  //     return (
-  //       <Link key={team.id} to={`/team/${team.team_name}`}>
-  //         <div>{team.team_name}</div>
-  //       </Link>
-  //     );
-  //   });
-  // }
 
   render() {
-    console.log(this.state.name);
-    console.log(this.state.enter);
-    console.log(this.state.started);
-    console.log(this.state.complete);
 
     const displayBracketsJoined = this.state.bracketIDs.map(bracket => {
       if (
         bracket.bracketfull === null &&
-        (bracket.player1 === this.props.user.id ||
-          bracket.player2 === this.props.user.id)
+        (bracket.player1 === this.state.id ||
+          bracket.player2 === this.state.id)
       ) {
         return (
           <Link
@@ -103,8 +105,8 @@ class Home extends Component {
     const displayBracketsStarted = this.state.bracketIDs.map(brackets => {
       if (
         brackets.bracketfull !== null &&
-        (brackets.player1 === this.props.user.id ||
-          brackets.player2 === this.props.user.id) &&
+        (brackets.player1 === this.state.id ||
+          brackets.player2 === this.state.id) &&
         brackets.bracketcomplete !== 1
       ) {
         return (
@@ -122,8 +124,8 @@ class Home extends Component {
     const displayBracketsComplete = this.state.bracketIDs.map(brackets => {
       if (
         brackets.bracketfull !== null &&
-        (brackets.player1 === this.props.user.id ||
-          brackets.player2 === this.props.user.id) &&
+        (brackets.player1 === this.state.id ||
+          brackets.player2 === this.state.id) &&
         brackets.bracketcomplete === 1
       ) {
         return (
@@ -140,27 +142,27 @@ class Home extends Component {
         <div className="info">
           <div className="name">
             <div>
-              <h1>{user.name}</h1>
+              <h1>{this.state.name}</h1>
             </div>
             <div>
-              <img className="pp" src={user.img} alt="" />
+              <img className="pp" src={this.state.img} alt="" />
             </div>
           </div>
           <div className="therest">
             <div className="edit">
               <div>
-                <h2>Class: {user.class}</h2>
+                <h2>Class: {this.state.class}</h2>
               </div>
-              <div>
+              {/* <div>
                 <p
                   className="editprofile"
                   onClick={() => this.handleClick(true)}
                 >
                   Edit Profile 
                 </p>
-              </div>
+              </div> */}
             </div>
-            <h2>Slack Name: {user.slack}</h2>
+            <h2>Slack Name: {this.state.slack}</h2>
             <div />
             <div>
               <div className="ready">Brackets:</div>
@@ -229,4 +231,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getUserInfo })(Home);
+export default connect(mapStateToProps, { getUserInfo })(Profile);

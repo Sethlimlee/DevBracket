@@ -274,9 +274,9 @@ module.exports = {
   
   updateUser: (req, res) => {
     const db = req.app.get("db");
-    const { img, name, className } = req.body;
+    const { img, name, className, slack } = req.body;
     const {id} = req.params
-    db.update_user([id, img, name, className]).then(resp => {
+    db.update_user([id, img, name, className, slack]).then(resp => {
       res.status(200).send()
     })
   },
@@ -294,6 +294,15 @@ module.exports = {
     db.complete_bracket([bracketid]).then(response => {
       res.status(200).send()
     })
-  }
+  },
+
+  findProfile: (req, res) => {
+    const db = req.app.get("db");
+    db.find_profile([req.params.id]).then(response => {
+      profile = {id: response[0].id, name: response[0].name, img: response[0].img, class: response[0].class, slack: response[0].slack}
+      console.log(profile)
+      res.status(200).send(profile);
+    });
+  },
 
 };

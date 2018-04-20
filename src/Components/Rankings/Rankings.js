@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./ranks.css";
 
 class Rankings extends Component {
@@ -47,7 +48,9 @@ class Rankings extends Component {
           </div>
           <div>
             <div className="picandname">
+            <Link className ='rankinglinks' key={player.id} to={`/profile/${player.id}`}>
               <img className="pic" src={player.img} alt="" /> {player.name}
+              </Link>
             </div>
           </div>
           <div>
@@ -64,7 +67,9 @@ class Rankings extends Component {
           </div>
           <div>
             <div className="picandname">
+            <Link className ='rankinglinks' key={player.id} to={`/profile/${player.id}`}>
               <img className="pic" src={player.img} alt="" /> {player.name}
+              </Link>
             </div>
           </div>
           <div>

@@ -3,6 +3,7 @@ import "./match.css";
 import axios from "axios";
 import { SteppedLineTo } from "react-lineto";
 import swal from 'sweetalert2'
+import { Link } from "react-router-dom";
 
 class Match extends Component {
   constructor() {
@@ -42,7 +43,10 @@ class Match extends Component {
             <div className="player">
               {<img className="pic" src={this.props.match.player1img} alt="" />}
               {this.props.match.player1name !== "null"
-                ? this.props.match.player1name
+                ? 
+                <Link className ='rankinglinks' key={this.props.match.player1} to={`/profile/${this.props.match.player1}`}>
+                {this.props.match.player1name}
+                </Link>
                 : " "}{" "}
               {this.props.match.button !== "no" &&
               this.props.match.player1name !== null &&
@@ -88,7 +92,10 @@ class Match extends Component {
             <div className="player">
               {<img className="pic" src={this.props.match.player2img} alt="" />}
               {this.props.match.player2name !== "null"
-                ? this.props.match.player2name
+                ? 
+                <Link className ='rankinglinks' key={this.props.match.player2} to={`/profile/${this.props.match.player2}`}>
+                {this.props.match.player2name}
+                </Link>
                 : " "}{" "}
               {this.props.match.button !== "no" &&
               this.props.match.player1name !== null &&
@@ -136,14 +143,20 @@ class Match extends Component {
             <div className="player">
               {<img className="pic" src={this.props.match.player1img} alt="" />}
               {this.props.match.player1name !== "null"
-                ? this.props.match.player1name
+                ? 
+                <Link className ='rankinglinks' key={this.props.match.player1} to={`/profile/${this.props.match.player1}`}>
+                {this.props.match.player1name}
+                </Link>
                 : " "}{" "}
             </div>
             <div>VS.</div>
             <div className="player">
               {<img className="pic" src={this.props.match.player2img} alt="" />}
               {this.props.match.player2name !== "null"
-                ? this.props.match.player2name
+                ? 
+                <Link className ='rankinglinks' key={this.props.match.player2} to={`/profile/${this.props.match.player2}`}>
+                {this.props.match.player2name}
+                </Link>
                 : " "}{" "}
             </div>
           </div>

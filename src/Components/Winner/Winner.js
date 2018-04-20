@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../Match/Match";
 import './winner.css';
+import { Link } from "react-router-dom";
 
 
 class Winner extends Component {
@@ -11,7 +12,10 @@ class Winner extends Component {
         <div className="playerwin">
           {<img className="pic" src={this.props.match.player1img} alt="" />}
           {this.props.match.player1name !== "null"
-            ? this.props.match.player1name
+            ?
+            <Link className ='rankinglinks' key={this.props.match.player1} to={`/profile/${this.props.match.player1}`}>
+            {this.props.match.player1name}
+            </Link>
             : " "}{" "}
         </div>
       </div>
