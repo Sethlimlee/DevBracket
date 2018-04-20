@@ -1,6 +1,7 @@
 .bracket {
   display: flex;
   justify-content: space-evenly;
+  padding-top: 10vh;
   align-items: center;
   background-color: lightgray;
   min-width: 100vw;
