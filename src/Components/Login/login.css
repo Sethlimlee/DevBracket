@@ -4,7 +4,7 @@
   width: 100vw;
   font-family: 'Montserrat', sans-serif;
   color: #2AABE2;
-  font-size: 70px;
+  font-size: 6.7vw;
  
   letter-spacing: 15px;
   background: radial-gradient(#40404b, #111118) rgba(34,34,40,0.94);
@@ -19,13 +19,13 @@
 .login:link {
   text-decoration: none;
   letter-spacing: 2px;
-  font-size: 30px;
+  font-size: 2.7vw;
   color: white;
 }
 .login:visited {
   text-decoration: none;
   letter-spacing: 2px;
-  font-size: 30px;
+  font-size: 2.7vw;
   color: white;
 }
 .login:hover {
