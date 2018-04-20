@@ -1,6 +1,5 @@
 .join {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -33,7 +32,7 @@
 
 .pending {
   margin-bottom: 40px;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .pendingbrackets {

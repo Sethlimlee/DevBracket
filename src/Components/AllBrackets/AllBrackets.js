@@ -26,15 +26,15 @@ class AllBrackets extends Component {
       if (bracket.bracketfull === "full") {
         return (
           <Link className='allbracket' key={bracket.bracketid} to={`/bracket/${bracket.bracketid}`}>
-            <div className='allbracketsshow'>Bracket {bracket.bracketid}</div>
+            <div className='allbracketsshow'>Bracket {bracket.bracketid} ({bracket.sport})</div>
           </Link>
         );
       }
     })
     : 'log in first'
     return (
-      <div className='outsidebox'>
-        <div className='profile'>
+      <div className='outsideboxrank'>
+        <div className='profilerank'>
           <div className='allbrackets'>
             <div className = 'allbracketstitle'>Brackets:</div>
             <div className='displayallbrackets'>{displayBrackets}</div>

@@ -53,7 +53,7 @@
 }
 
 .therest {
-  padding-top: 25px;
+  padding-top: 55px;
   padding-left: 32px;
   text-align: left;
   width: 100%;
@@ -63,9 +63,10 @@
   font-size: 25px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+ 
   padding-bottom: 32px;
 }
+
 
 .edit {
   display: flex;
@@ -73,7 +74,7 @@
   justify-content: space-between;
   padding-right: 32px;
   align-items: center;
-  margin-bottom: 10px;
+  
   font-size: 25px;
 }
 
@@ -92,6 +93,9 @@
   color: white;
 }
 
+.teams {
+  padding-top: 80px;
+}
 .brackets {
   display: flex;
   flex-wrap: wrap;
@@ -99,6 +103,7 @@
 }
 .ready {
   padding-bottom: 20px;
+  padding-top: 120px;
 }
 
 .bracketStarted {

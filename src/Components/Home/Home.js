@@ -170,9 +170,6 @@ class Home extends Component {
             </div>
             <p /> */}
             <div>
-              Teams:
-            </div>
-            <div>
               <div className='ready'>Brackets:</div>
               <div className='brackets'>
               {displayBracketsStarted}
@@ -225,9 +222,9 @@ class Home extends Component {
     );
 
     return (
-      <div className="outsidebox">
+      <div className="outsideboxrank">
       
-        <div className="profile">{userDataJSX}</div>
+        <div className="profilerank">{userDataJSX}</div>
       </div>
     );
   }

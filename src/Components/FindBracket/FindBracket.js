@@ -168,11 +168,11 @@ class FindBracket extends Component {
     : 'log in first'
 
     return (
-      <div className="outsidebox">
-        <div className="profileFind">
+      <div className="outsideboxrank">
+        <div className="profilerank">
           <div className="find">
           <div>
-        <h2>Bracket Size:</h2>
+        <div className='findtitle'><h2>Bracket Size:</h2></div>
         <div className='findinfo'>{this.state.bracket.length * 2}</div>
           </div>
         <div>

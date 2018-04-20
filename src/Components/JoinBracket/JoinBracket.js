@@ -33,7 +33,7 @@ class JoinBracket extends Component {
                 to={`/findbracket/${bracket.bracketid}`}
               >
                 <div className="pendingbracket">
-                  Bracket: {bracket.bracketid}
+                  Bracket: {bracket.bracketid} ({bracket.sport})
                 </div>
               </Link>
             );
@@ -41,8 +41,8 @@ class JoinBracket extends Component {
         })
       : " log in first";
     return (
-      <div className="outsidebox">
-        <div className="profile">
+      <div className="outsideboxrank">
+        <div className="profilerank">
           <div className="join">
             <div className="pending">Pending Brackets:</div>
             <div className="pendingbrackets">{displayBrackets}</div>

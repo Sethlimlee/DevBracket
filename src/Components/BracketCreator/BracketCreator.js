@@ -123,8 +123,9 @@ class BracketCreator extends Component {
     console.log(this.props.user.img);
 
     const bracketCreator = this.props.user.id ? (
-      <div className="creator">
-        <div className="bracketnumber">Bracket #{this.state.bracketid}</div>
+      <div className='join'>
+        <div className="pending">Bracket #{this.state.bracketid}</div>
+      <div className="therestcreate">
         <div className="players">
           # of Players:{" "}
           <p className="playerschoice" onClick={e => this.handleBracketSize(2)}>
@@ -152,7 +153,7 @@ class BracketCreator extends Component {
             Foosball
           </p>
         </div>
-        <div>
+        <div className='submitdetails'>
           <div className="details">Bracket Size: {this.state.bracketSize}</div>
           <div className="details">Sport: {this.state.sport}</div>
           <p className="submitbracket" onClick={() => this.submitBracket()}>
@@ -160,13 +161,14 @@ class BracketCreator extends Component {
           </p>
         </div>
       </div>
+      </div>
     ) : (
       "log in first"
     );
 
     return (
-      <div className="outsidebox">
-        <div className="profile">{bracketCreator}</div>
+      <div className="outsideboxrank">
+        <div className="profilerank">{bracketCreator}</div>
       </div>
     );
   }
