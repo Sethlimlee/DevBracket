@@ -276,8 +276,20 @@ module.exports = {
     const db = req.app.get("db");
     const { img, name, className, slack } = req.body;
     const {id} = req.params
-    db.update_user([id, img, name, className, slack]).then(resp => {
-      res.status(200).send()
+    db.check_slack([id]).then(resp => {
+      if (!resp[0]) {
+        db.create_slack([id, slack]).then(createresponse => {
+          db.update_user([id, img, name, className]).then(updateresponse => {
+            res.status(200).send(updateresponse)
+          })
+        })
+      } else {
+        db.update_slack([id, slack]).then(updateslack => {
+          db.update_user([id, img, name, className]).then(updateresponse => {
+            res.status(200).send(updateresponse)
+          })
+        })
+      }
     })
   },
 
@@ -304,5 +316,17 @@ module.exports = {
       res.status(200).send(profile);
     });
   },
+
+  findSlack: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+    console.log(id)
+    db.get_slack([id]).then(resp => {
+      console.log( resp)
+      slackName = resp[0].slackname
+      console.log(slackName)
+      res.status(200).send(slackName)
+    })
+  }
 
 };

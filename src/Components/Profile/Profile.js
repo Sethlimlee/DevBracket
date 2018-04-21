@@ -17,18 +17,22 @@ class Profile extends Component {
       bracketIDs: [],
       enter: false,
       started: false,
-      complete: false
+      complete: false,
+      noname: '(To Contact Opponents)'
+
     };
   }
   componentDidMount() {
     this.findPlayer()
+    this.props.getUserInfo().then( res => {
+      this.findSlack(this.props.match.params.id)
+    })
     axios.get(`/api/userbrackets`).then(response => {
       console.log(response.data);
       this.setState({
         bracketIDs: response.data
       });
     });
-    this.props.getUserInfo();
   
   }
 
@@ -39,11 +43,17 @@ class Profile extends Component {
         img: res.data.img,
         name: res.data.name,
         class: res.data.class,
-        slack: res.data.slack,
         id: res.data.id,
       })
     })
+  }
 
+  findSlack(value){
+    axios.get("/api/slack/" + value).then(response => {
+      this.setState({
+        slack: response.data
+      })
+    })
   }
 
   handleToggle(key, value) {
@@ -85,7 +95,7 @@ class Profile extends Component {
   }
 
   render() {
-
+console.log(this.state.slack)
     const displayBracketsJoined = this.state.bracketIDs.map(bracket => {
       if (
         bracket.bracketfull === null &&
@@ -153,16 +163,9 @@ class Profile extends Component {
               <div>
                 <h2>Class: {this.state.class}</h2>
               </div>
-              {/* <div>
-                <p
-                  className="editprofile"
-                  onClick={() => this.handleClick(true)}
-                >
-                  Edit Profile 
-                </p>
-              </div> */}
+             
             </div>
-            <h2>Slack Name: {this.state.slack}</h2>
+            <h2>Slack Name: {this.state.slack !== '' ? (this.state.slack): (this.state.noname) } </h2>
             <div />
             <div>
               <div className="ready">Brackets:</div>

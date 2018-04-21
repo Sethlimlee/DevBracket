@@ -13,22 +13,25 @@ class Home extends Component {
       img: "",
       name: "",
       class: "",
-      slack: '',
+      slack: "",
       id: 0,
       bracketIDs: [],
       enter: false,
       started: false,
-      complete: false
+      complete: false,
+      noname: '(To Contact Opponents)'
     };
   }
   componentDidMount() {
+    this.props.getUserInfo().then(res => {
+      this.findSlack(this.props.user.id);
+    });
     axios.get(`/api/userbrackets`).then(response => {
       console.log(response.data);
       this.setState({
         bracketIDs: response.data
       });
     });
-    this.props.getUserInfo();
   }
 
   handleToggle(key, value) {
@@ -42,8 +45,7 @@ class Home extends Component {
       toggle: value,
       img: this.props.user.img,
       name: this.props.user.name,
-      class: this.props.user.class,
-      slack: this.props.user.slack
+      class: this.props.user.class
     });
   }
 
@@ -53,7 +55,18 @@ class Home extends Component {
     });
   }
 
+  findSlack(value) {
+    axios.get("/api/slack/" + value).then(response => {
+      this.setState({
+        slack: response.data
+      });
+    });
+  }
+
   handleUpdate() {
+    this.setState({
+      toggle: false
+    });
     axios
       .put(`/api/updateProfile/${this.props.user.id}`, {
         img: this.state.img,
@@ -63,9 +76,6 @@ class Home extends Component {
       })
       .then(res => {
         this.props.getUserInfo();
-        this.setState({
-          toggle: false
-        });
       });
   }
   // startMap() {
@@ -79,6 +89,7 @@ class Home extends Component {
   // }
 
   render() {
+    console.log(this.state.slack);
     console.log(this.state.name);
     console.log(this.state.enter);
     console.log(this.state.started);
@@ -156,11 +167,11 @@ class Home extends Component {
                   className="editprofile"
                   onClick={() => this.handleClick(true)}
                 >
-                  Edit Profile 
+                  Edit Profile
                 </p>
               </div>
             </div>
-            <h2>Slack Name: {user.slack}</h2>
+            <h2>Slack Name: {this.state.slack !== '' ? (this.state.slack): (this.state.noname) } </h2>
             <div />
             <div>
               <div className="ready">Brackets:</div>

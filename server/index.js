@@ -127,6 +127,7 @@ app.put("/api/updateProfile/:id", c.updateUser)
 app.get('/api/userbrackets', c.userBrackets)
 app.put('/api/complete/:bracketid', c.completeBracket)
 app.get("/api/profile/:id", c.findProfile);
+app.get("/api/slack/:id", c.findSlack);
 
 
 app.listen(SERVER_PORT, () =>
