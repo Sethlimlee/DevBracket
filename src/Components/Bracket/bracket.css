@@ -4,8 +4,10 @@
   padding-top: 10vh;
   align-items: center;
   background-color: lightgray;
+  overflow: scroll;
   min-width: 100vw;
 }
+
 
 .column {
   height: 1000px;

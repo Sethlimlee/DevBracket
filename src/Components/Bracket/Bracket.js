@@ -165,23 +165,15 @@ class Bracket extends Component {
     });
 
     return (
-      <div>
+      <div className='whole'>
         {this.props.user.id ? (
           <div className="bracket">
             <div className="column">{matchesDisplayedRound1}</div>
-            <div className="column2">{matchesDisplayedRound2}</div>
-            <div className="column3">{matchesDisplayedRound3}</div>
-            <div className="column4">{matchesDisplayedRound4}</div>
-            <div className="column5">{matchesDisplayedRound5}</div>
-            <div className="column6">{matchesDisplayedRound6}</div>
-            <SteppedLineTo
-              from="match.995"
-              within="column"
-              to="match.997"
-              within="column2"
-              orientation="v"
-            />
-
+            <div className="column">{matchesDisplayedRound2}</div>
+            <div className="column">{matchesDisplayedRound3}</div>
+            <div className="column">{matchesDisplayedRound4}</div>
+            <div className="column">{matchesDisplayedRound5}</div>
+            <div className="column">{matchesDisplayedRound6}</div>
           </div>
         ) : (
           <div className='loginfirst'>log in first</div>
