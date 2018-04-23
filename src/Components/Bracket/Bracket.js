@@ -7,7 +7,6 @@ import axios from "axios";
 import "./bracket.css";
 import { SteppedLineTo } from "react-lineto";
 
-
 class Bracket extends Component {
   constructor() {
     super();
@@ -157,16 +156,16 @@ class Bracket extends Component {
     });
 
     let matchesDisplayedRound6 = this.state.bracket.map(match => {
-      if (match.winner === "yes" && (match.player1name != null)) {
-        axios.put(`/api/complete/${match.bracketid}`)
+      if (match.winner === "yes" && match.player1name != null) {
+        axios.put(`/api/complete/${match.bracketid}`);
       }
       if (match.winner === "yes")
         return <Winner key={match.id} match={match} />;
     });
 
     return (
-      <div className='whole'>
-        {this.props.user.id ? (
+      <div className="whole">
+        {this.props.user.id && this.state.bracket.length === 16 ? (
           <div className="bracket">
             <div className="column">{matchesDisplayedRound1}</div>
             <div className="column">{matchesDisplayedRound2}</div>
@@ -175,8 +174,35 @@ class Bracket extends Component {
             <div className="column">{matchesDisplayedRound5}</div>
             <div className="column">{matchesDisplayedRound6}</div>
           </div>
+        ) : this.props.user.id && this.state.bracket.length === 8 ? (
+          <div className="bracket8">
+            <div className="column">{matchesDisplayedRound1}</div>
+            <div className="column">{matchesDisplayedRound2}</div>
+            <div className="column">{matchesDisplayedRound3}</div>
+            <div className="column">{matchesDisplayedRound4}</div>
+            <div className="column">{matchesDisplayedRound5}</div>
+            <div className="column">{matchesDisplayedRound6}</div>
+          </div>
+        ) : this.props.user.id && this.state.bracket.length === 4 ? (
+          <div className="bracket4">
+            <div className="column">{matchesDisplayedRound1}</div>
+            <div className="column">{matchesDisplayedRound2}</div>
+            <div className="column">{matchesDisplayedRound3}</div>
+            <div className="column">{matchesDisplayedRound4}</div>
+            <div className="column">{matchesDisplayedRound5}</div>
+            <div className="column">{matchesDisplayedRound6}</div>
+          </div>
+        ) : this.props.user.id && this.state.bracket.length === 2 ? (
+          <div className="bracket2">
+            <div className="column">{matchesDisplayedRound1}</div>
+            <div className="column">{matchesDisplayedRound2}</div>
+            <div className="column">{matchesDisplayedRound3}</div>
+            <div className="column">{matchesDisplayedRound4}</div>
+            <div className="column">{matchesDisplayedRound5}</div>
+            <div className="column">{matchesDisplayedRound6}</div>
+          </div>
         ) : (
-          <div className='loginfirst'>log in first</div>
+          <div className="loginfirst">log in first</div>
         )}
       </div>
     );
