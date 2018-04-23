@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500,600,700");
 .nav {
   top: 0px;
-  position: absolute;
+  position: fixed;
   display: flex;
   z-index: 3;
   background-color: #333;
