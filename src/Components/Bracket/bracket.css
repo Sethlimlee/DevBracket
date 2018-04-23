@@ -4,7 +4,8 @@
   padding-top: 10vh;
   align-items: center;
   background-color: lightgray;
-  overflow: scroll;
+  overflow: auto;
+  float: left;
   min-width: 100vw;
 }
 
